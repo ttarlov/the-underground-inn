@@ -1,6 +1,38 @@
 /* This is an example of using Sass, otherwise plain CSS works too*/
-$primary-background: pink;
+@import 'log-in-window';
+@import 'variables';
+@import 'neon-sign';
+
+* {
+  box-sizing: border-box;
+  cursor: default;
+  margin: 0;
+  padding: 0;
+}
 
 body {
-  background-color: $primary-background;
+  background: url(//images.weserv.nl/?url=i.imgur.com/6QJjYMe.jpg)  center no-repeat;
+  background-size: cover;
+  margin: 0;
+  font-family: $heading-font;
+  padding: 0;
+  height: 1000px;
+}
+
+
+h1 {
+  font-family: $heading-font;
+  color: $communist-red;
+  font-size: 2.7em;
+  margin-left: 40px;
+}
+
+h2 {
+  margin-left: 100px;
+  font-size: 1.5em;
+}
+
+
+.hidden {
+  display: none;
 }
