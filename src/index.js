@@ -1,6 +1,8 @@
 // An example of how you import jQuery into a JS file if you use jQuery in that file
 import $ from 'jquery';
-import User  from './user'
+import domUpdates from './dom-updates.js'
+import User  from './user';
+import ApiController from './api-controller';
 // An example of how you tell webpack to use a CSS (SCSS) file
 import './css/base.scss';
 import './images/turing-logo.png'
@@ -19,16 +21,29 @@ const generateUserId = () => {
 
 // will go inside a user class
 function processLogIn(data) {
-  if($('#password-input').val() === 'travel2020' && $('#username-input').val().includes('travel'))  {
+  if($('#password-input').val() === 'overlook2019' && $('#username-input').val().includes('customer'))  {
     event.preventDefault();
-    getTravelerData()
-    domUpdates.hideLoginWindow();
-  } else if ($('#password-input').val() === 'travel2020' && $('#username-input').val().includes('agency')) {
+      domUpdates.hideLoginWindow()
+    // getTravelerData()
+    // domUpdates.hideLoginWindow();
+  } else if ($('#password-input').val() === 'overlook2019' && $('#username-input').val().includes('manager')) {
     event.preventDefault();
-    getAgencyData();
-    domUpdates.hideLoginWindow();
+    // getAgencyData();
+    // domUpdates.hideLoginWindow();
     // domUpdates.showWelcomeCard();
   } else {
     window.alert("Wrong Password or User Name")
   }
 };
+
+
+
+
+
+
+
+
+
+
+
+$('#log-in-btn').click(processLogIn)
