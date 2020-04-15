@@ -1,10 +1,20 @@
+import Customer from '../src/Customer';
+
 class CustomerRepo {
   constructor(allCustomers) {
-    this.customers = allCustomers;
+    this.customers = this.instantiateCustomers(allCustomers);
   }
 
   getCustomerById(id) {
     return this.customers.find(customer => customer.id === id);
   }
+
+  instantiateCustomers(allCustomers) {
+    return allCustomers.map(customer => {
+    return  new Customer(customer);
+    });
+  }
+
 }
-module.exports = CustomerRepo;
+
+export default  CustomerRepo;
