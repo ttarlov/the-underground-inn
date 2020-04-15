@@ -10,7 +10,6 @@ describe('Customer Class', function(){
   let allCustomers;
 
   beforeEach(function(){
-    customerRepo = new CustomerRepo(allCustomers)
     allCustomers = [{
       "id": 1,
       "name": "Leatha Ullrich"
@@ -52,6 +51,8 @@ describe('Customer Class', function(){
       "name": "Tony Armstrong"
       },
 ];
+
+customerRepo = new CustomerRepo(allCustomers)
 
 }); //beforeEach closes
 
