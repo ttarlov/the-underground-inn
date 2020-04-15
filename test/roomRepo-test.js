@@ -70,7 +70,7 @@ describe('Room Class', function(){
   });
 
   it('should be able to to get a room by a room number', function(){
-    expect(roomRepo.getRoomsByRoomNumber(3)).to.eq(allRooms[2]);
+    expect(roomRepo.getRoomsByRoomNumber(3)).to.deep.eq([allRooms[2]]);
   });
 
 
