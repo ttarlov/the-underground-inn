@@ -3,10 +3,13 @@ import $ from 'jquery';
 import domUpdates from './dom-updates.js'
 import User  from './user';
 import ApiController from './api-controller';
+import CustomerRepo from './Customer-repo'
 // An example of how you tell webpack to use a CSS (SCSS) file
 import './css/base.scss';
 import './images/turing-logo.png'
 
+const api = new ApiController();
+const moment = require("moment");
 
 const generateUserId = () => {
   let userName = $('#username-input').val();
@@ -28,6 +31,8 @@ function processLogIn(data) {
     // domUpdates.hideLoginWindow();
   } else if ($('#password-input').val() === 'overlook2019' && $('#username-input').val().includes('manager')) {
     event.preventDefault();
+      getManagerData()
+      domUpdates.hideLoginWindow()
     // getAgencyData();
     // domUpdates.hideLoginWindow();
     // domUpdates.showWelcomeCard();
@@ -36,8 +41,26 @@ function processLogIn(data) {
   }
 };
 
+const getManagerData = () => {
+  let fetchedAllRooms = api.getAllRooms()
+  let fetchedAllBookings = api.getAllBookings()
+  let fetchedAllUsers = api.getAllUsers()
+
+  Promise.all([fetchedAllRooms, fetchedAllBookings, fetchedAllUsers])
+  .then(fetchedData => {
+    let allRooms = fetchedData[0].rooms;
+    let allBooking = fetchedData[1].bookings;
+    let allUsers = fetchedData[2].users;
+    createManager(allRooms, allBooking, allUsers)
+  })//.catch(error => console.log(error.message));
+}
 
 
+const createManager = (allRooms, allBooking, allUsers) => {
+  console.log(allRooms);
+  console.log(allBooking);
+  console.log(allUsers);
+}
 
 
 
