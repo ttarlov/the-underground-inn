@@ -143,9 +143,47 @@ describe('addRoomsToBookings Method', function(){
   describe('calculateTotalRevenueForToday', function(){
 
     it('should be able to calculate total revenue for today', function(){
-      expect(manager.calculateTotalRevenueForToday()).to.eq(1326.92)
+      expect(manager.calculateTotalRevenueForToday()).to.eq(968.52)
 
     });
+
+    describe('findTodaysBookings Method', function(){
+      it('should find all bookings for today', function(){
+        expect(manager.todaysBookings).to.deep.eq([
+            {
+              id: '5fwrgu4i7k55hl6t5',
+              userID: 43,
+              date: '2020/04/16',
+              roomNumber: 2,
+              roomServiceCharges: [],
+              bookedRoom: {
+                number: 2,
+                roomType: 'suite',
+                bidet: false,
+                bedSize: 'full',
+                numBeds: 2,
+                costPerNight: 477.38
+              }
+            },
+            {
+              id: '5fwrgu4i7k55hl6t6',
+              userID: 13,
+              date: '2020/04/16',
+              roomNumber: 3,
+              roomServiceCharges: [],
+              bookedRoom: {
+                number: 3,
+                roomType: 'single room',
+                bidet: false,
+                bedSize: 'king',
+                numBeds: 1,
+                costPerNight: 491.14
+              }
+            }
+          ])
+      });
+    });
+
 
 
   });
