@@ -3,7 +3,7 @@ const moment = require("moment");
 class Manager {
   constructor(allBookings, allRooms) {
     this.bookings = allBookings;
-    this.roomsForToday = []
+    this.todaysBookings = this.findTodaysBookings()
     this.addRoomsToBookings(allRooms)
   }
 
@@ -36,9 +36,8 @@ getTotalRoomsAvailableToday() {
 
 
 calculateTotalRevenueForToday() {
-  let today = moment().format("YYYY/MM/DD");
 
-  return this.bookings.reduce((totalRevenue, booking) => {
+  return this.todaysBookings.reduce((totalRevenue, booking) => {
 
     totalRevenue += booking.bookedRoom.costPerNight
 
@@ -46,6 +45,13 @@ calculateTotalRevenueForToday() {
   },0)
 
 }
+
+findTodaysBookings() {
+  let today = moment().format("YYYY/MM/DD");
+  return  this.bookings.filter(booking => booking.date === today);
+
+}
+
 
 }
 
