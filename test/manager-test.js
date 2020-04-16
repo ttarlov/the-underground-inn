@@ -1,5 +1,6 @@
 import chai from 'chai';
 const expect = chai.expect;
+const moment = require("moment");
 
 import Manager from '../src/Manager';
 
@@ -8,8 +9,10 @@ describe('Manager Class', function(){
   let manager;
   let rooms;
   let bookings;
+  let today;
 
 beforeEach(function(){
+  today = moment().format("YYYY/MM/DD")
 
   rooms = [
     {
@@ -49,20 +52,19 @@ beforeEach(function(){
     {
     "id": "5fwrgu4i7k55hl6t5",
     "userID": 43,
-    "date": "2020/01/24",
+    "date": today,
     "roomNumber": 2,
     "roomServiceCharges": []
     },
     {
     "id": "5fwrgu4i7k55hl6t6",
     "userID": 13,
-    "date": "2020/01/10",
+    "date": today,
     "roomNumber": 3,
     "roomServiceCharges": []
     },
 
   ];
-
   manager = new Manager(bookings, rooms)
 });
 
@@ -99,7 +101,7 @@ describe('addRoomsToBookings Method', function(){
   {
     id: '5fwrgu4i7k55hl6t5',
     userID: 43,
-    date: '2020/01/24',
+    date: today,
     roomNumber: 2,
     roomServiceCharges: [],
     bookedRoom: {
@@ -114,7 +116,7 @@ describe('addRoomsToBookings Method', function(){
   {
     id: '5fwrgu4i7k55hl6t6',
     userID: 13,
-    date: '2020/01/10',
+    date: today,
     roomNumber: 3,
     roomServiceCharges: [],
     bookedRoom: {
@@ -127,11 +129,18 @@ describe('addRoomsToBookings Method', function(){
     }
   }
 ])
+  });
+});
+
+  describe('getTotalRoomsAvailableToday Method', function(){
+    it('should get available rooms for today', function(){
+
+      expect(manager.getTotalRoomsAvailableToday()).to.eq(23)
+
+
+    });
 
   });
-
-
-});
 
 
 
