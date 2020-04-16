@@ -133,12 +133,20 @@ describe('addRoomsToBookings Method', function(){
 });
 
   describe('getTotalRoomsAvailableToday Method', function(){
+
     it('should get available rooms for today', function(){
-
       expect(manager.getTotalRoomsAvailableToday()).to.eq(23)
+    });
 
+  });
+
+  describe('calculateTotalRevenueForToday', function(){
+
+    it('should be able to calculate total revenue for today', function(){
+      expect(manager.calculateTotalRevenueForToday()).to.eq(1326.92)
 
     });
+
 
   });
 
