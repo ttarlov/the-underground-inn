@@ -3,13 +3,16 @@ const expect = chai.expect;
 const moment = require("moment");
 
 import Manager from '../src/Manager';
-
+import Room from '../src/Room';
+import Booking from '../src/Booking'
 
 describe('Manager Class', function(){
   let manager;
   let rooms;
   let bookings;
   let today;
+  let roomsArry;
+  let bookingsArry;
 
 beforeEach(function(){
   today = moment().format("YYYY/MM/DD")
@@ -63,9 +66,12 @@ beforeEach(function(){
     "roomNumber": 3,
     "roomServiceCharges": []
     },
-
   ];
-  manager = new Manager(bookings, rooms)
+
+  roomsArry = rooms.map(room => new Room(room))
+  bookingsArry = bookings.map(booking => new Booking(booking))
+
+  manager = new Manager(bookingsArry, roomsArry)
 });
 
 
@@ -78,6 +84,11 @@ it('should be a function', function(){
 it('should be an instance of Manager Class', function(){
   expect(manager).to.be.an.instanceof(Manager)
 });
+
+it('should initialize with todays date property', function(){
+  expect(manager.today).to.eq(today)
+});
+
 
 describe('addRoomsToBookings Method', function(){
 
@@ -183,7 +194,13 @@ describe('addRoomsToBookings Method', function(){
           ])
       });
     });
+  });
 
+  describe('findPercentageOfRoomsOccupiedForToday Method', function(){
+
+    it('should calculate percentage of rooms occuped for today', function(){
+      console.log(manager.findPercentageOfRoomsOccupiedForToday());
+    });
 
 
   });
