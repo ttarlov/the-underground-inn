@@ -58,7 +58,9 @@ findTodaysBookings() {
 
 
 findPercentageOfRoomsOccupiedForToday() {
-  return 100 - ((this.getTotalRoomsAvailableToday() / 25) * 100)
+  let totalPercentage = 100 - ((this.getTotalRoomsAvailableToday() / 25) * 100)
+  domUpdates.showPecentageOfRoomsOccupied(totalPercentage);
+  return totalPercentage;
 }
 
 
