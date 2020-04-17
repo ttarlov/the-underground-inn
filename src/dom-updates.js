@@ -24,8 +24,14 @@ showTotalRevenueForToday(totalRevenue) {
   <p>Total Revenue For Today</p>
   <p>$${totalRevenue}</p>
   </section>`)
-}
+},
 
+showPecentageOfRoomsOccupied(totalPercentage) {
+  $('main').prepend(`<section class="total-percentage-occupied">
+  <p>Rooms Occupied Today</p>
+  <p>${totalPercentage}%</p>
+  </section>`)
+}
 
 }
 
