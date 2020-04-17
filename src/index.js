@@ -65,8 +65,9 @@ const createManager = (allRooms, allBookings, allUsers) => {
   let allBookingsArray = allBookings.map(booking => new Booking(booking));
   let manager = new Manager(allBookingsArray, allRoomsArray)
 
-  manager.getTotalRoomsAvailableToday()
   manager.calculateTotalRevenueForToday();
+  manager.findPercentageOfRoomsOccupiedForToday();
+
     console.log(manager);
   // console.log(allRooms);
   // console.log(allBooking);
