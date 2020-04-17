@@ -21,4 +21,5 @@ getAllBookings() {
 
 
 }
-module.exports = ApiRequestController
+
+export default ApiController;
