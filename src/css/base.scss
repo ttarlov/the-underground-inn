@@ -3,6 +3,7 @@
 @import 'variables';
 @import 'neon-sign';
 @import 'nav-bar';
+@import 'info-cards';
 
 * {
   box-sizing: border-box;
@@ -15,11 +16,17 @@ body {
   background: url(//images.weserv.nl/?url=i.imgur.com/6QJjYMe.jpg)  center no-repeat;
   background-size: cover;
   margin: 0;
-  font-family: $heading-font;
+  font-family: $hard-to-read-one;
   padding: 0;
-  height: 1000px;
+  height: auto;
 }
 
+main {
+  height: 100vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+}
 
 // h1 {
 //   font-family: $heading-font;
