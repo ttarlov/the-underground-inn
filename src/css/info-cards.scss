@@ -1,0 +1,43 @@
+.available-rooms-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 20%;
+  height: 200px;
+  border: solid $border-color;
+  border-radius: $border-radius;
+  box-shadow: $default-shadow;
+
+  p:nth-child(1) {
+    font-size: 1.5vw;
+    margin-bottom: 10px;
+    padding:5px;
+  }
+
+  p {
+    font-size: 2em;
+    color:$border-color;
+    font-family: $hard-to-read-one;
+    text-shadow: $default-shadow;
+    padding: 5px;
+  }
+}
+
+.total-revenue-card {
+  @extend .available-rooms-card;
+
+  p:nth-child(1) {
+    font-size: 1.5vw;
+    margin-bottom: 10px;
+    padding:5px;
+  }
+
+  p {
+    font-size: 2em;
+    color:$border-color;
+    font-family: $hard-to-read-one;
+    text-shadow: $default-shadow;
+    padding: 5px;
+  }
+}
