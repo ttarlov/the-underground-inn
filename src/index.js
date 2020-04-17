@@ -4,6 +4,9 @@ import domUpdates from './dom-updates.js'
 import User  from './user';
 import ApiController from './api-controller';
 import CustomerRepo from './Customer-repo'
+import Room from './Room'
+import Booking from './Booking'
+import Manager from './Manager'
 // An example of how you tell webpack to use a CSS (SCSS) file
 import './css/base.scss';
 import './images/turing-logo.png'
@@ -32,36 +35,43 @@ function processLogIn(data) {
   } else if ($('#password-input').val() === 'overlook2019' && $('#username-input').val().includes('manager')) {
     event.preventDefault();
       getManagerData()
-      domUpdates.hideLoginWindow()
+      domUpdates.hideLoginWindow();
+      domUpdates.addNavBar();
     // getAgencyData();
     // domUpdates.hideLoginWindow();
     // domUpdates.showWelcomeCard();
   } else {
-    window.alert("Wrong Password or User Name")
+    window.alert("Wrong Password or User Name");
   }
 };
 
 const getManagerData = () => {
-  let fetchedAllRooms = api.getAllRooms()
-  let fetchedAllBookings = api.getAllBookings()
-  let fetchedAllUsers = api.getAllUsers()
+  let fetchedAllRooms = api.getAllRooms();
+  let fetchedAllBookings = api.getAllBookings();
+  let fetchedAllUsers = api.getAllUsers();
 
   Promise.all([fetchedAllRooms, fetchedAllBookings, fetchedAllUsers])
   .then(fetchedData => {
     let allRooms = fetchedData[0].rooms;
-    let allBooking = fetchedData[1].bookings;
+    let allBookings = fetchedData[1].bookings;
     let allUsers = fetchedData[2].users;
-    createManager(allRooms, allBooking, allUsers)
+    createManager(allRooms, allBookings, allUsers)
   })//.catch(error => console.log(error.message));
 }
 
 
-const createManager = (allRooms, allBooking, allUsers) => {
-  console.log(allRooms);
-  console.log(allBooking);
-  console.log(allUsers);
-}
+const createManager = (allRooms, allBookings, allUsers) => {
+  let allRoomsArray = allRooms.map(room => new Room(room));
+  let allBookingsArray = allBookings.map(booking => new Booking(booking));
+  let manager = new Manager(allBookingsArray, allRoomsArray)
 
+  manager.getTotalRoomsAvailableToday()
+  manager.calculateTotalRevenueForToday();
+    console.log(manager);
+  // console.log(allRooms);
+  // console.log(allBooking);
+  // console.log(allUsers);
+}
 
 
 
