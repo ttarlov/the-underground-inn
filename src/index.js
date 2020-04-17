@@ -34,7 +34,8 @@ function processLogIn(data) {
     // domUpdates.hideLoginWindow();
   } else if ($('#password-input').val() === 'overlook2019' && $('#username-input').val().includes('manager')) {
     event.preventDefault();
-      getManagerData()
+      // getManagerData()
+      fetchData(createManager)
       domUpdates.hideLoginWindow();
       domUpdates.addNavBar();
     // getAgencyData();
@@ -45,7 +46,7 @@ function processLogIn(data) {
   }
 };
 
-const getManagerData = () => {
+const fetchData = (entity) => {
   let fetchedAllRooms = api.getAllRooms();
   let fetchedAllBookings = api.getAllBookings();
   let fetchedAllUsers = api.getAllUsers();
@@ -55,9 +56,10 @@ const getManagerData = () => {
     let allRooms = fetchedData[0].rooms;
     let allBookings = fetchedData[1].bookings;
     let allUsers = fetchedData[2].users;
-    createManager(allRooms, allBookings, allUsers)
+    entity(allRooms, allBookings, allUsers)
   })//.catch(error => console.log(error.message));
 }
+
 
 
 const createManager = (allRooms, allBookings, allUsers) => {
@@ -69,11 +71,7 @@ const createManager = (allRooms, allBookings, allUsers) => {
   manager.findPercentageOfRoomsOccupiedForToday();
 
     console.log(manager);
-  // console.log(allRooms);
-  // console.log(allBooking);
-  // console.log(allUsers);
 }
-
 
 
 
