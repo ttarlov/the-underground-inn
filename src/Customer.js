@@ -10,19 +10,19 @@ class Customer {
 
   findPastBookings() {
     let pastBookings = this.bookings.filter(booking => moment(booking.date, "YYYY/MM/DD").fromNow().includes('ago'))
-    domUpdates.showPastBookings(pastBookings) // <---TEST WITH SPIES
+    domUpdates.showPastBookings(pastBookings)
     return pastBookings
   }
 
   findBookingsForToday() {
     let todaysBookings = this.bookings.filter(booking => booking.date === moment().format("YYYY/MM/DD"))
-    domUpdates.showBookingsForToday(todaysBookings); //<---TEST WITH SPIES
+    domUpdates.showBookingsForToday(todaysBookings);
     return todaysBookings
   }
 
   findFutureBookings() {
     let futureBookings = this.bookings.filter(booking => moment(booking.date, "YYYY/MM/DD").fromNow().includes('in'))
-    domUpdates.showFutureBookings(futureBookings) //<-- TEST WITH SPIES
+    domUpdates.showFutureBookings(futureBookings)
     return futureBookings
   }
 
@@ -32,8 +32,8 @@ class Customer {
       totalSpend += booking.bookedRoom.costPerNight
 
       return totalSpend
-    },0)
-    domUpdates.showAmountSpentOnRooms(this.name, totalAmount.toFixed(2))
+    },0).toFixed(2)
+    domUpdates.showAmountSpentOnRooms(this.name, totalAmount)
   return totalAmount
 
   }
