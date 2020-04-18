@@ -34,13 +34,13 @@ function processLogIn(data) {
       event.preventDefault();
       fetchData(createClinet, generateUserId())
       domUpdates.hideLoginWindow();
-      domUpdates.addNavBar();
+      domUpdates.addCustomerNavBar();
 
   } else if ($('#password-input').val() === 'overlook2019' && $('#username-input').val().includes('manager')) {
     event.preventDefault();
       fetchData(createManager);
       domUpdates.hideLoginWindow();
-      domUpdates.addNavBar();
+      domUpdates.addManagerNavBar();
 
   } else {
     window.alert("Wrong Password or User Name");
