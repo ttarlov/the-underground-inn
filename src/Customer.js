@@ -15,6 +15,10 @@ class Customer {
     return this.bookings.filter(booking => booking.date === moment().format("YYYY/MM/DD"))
   }
 
+  findFutureBookings() {
+    return this.bookings.filter(booking => moment(booking.date, "YYYY/MM/DD").fromNow().includes('in'))
+  }
+
 
 }
 export default Customer
