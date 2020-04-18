@@ -6,13 +6,22 @@ hideLoginWindow() {
   $(".neon-sign-login-container").slideUp(500)
 },
 
-addNavBar() {
+addCustomerNavBar() {
   $('.nav-bar-container').prepend(`<nav>
       <div class="nav-logo"><b>THE<span> UNDER</span>GROUND <span>INN</span></b></div>
       <section class="nav-btns-container">
       <button class="nav-btn" id="past-bookings">Past Room Bookings</button>
       <button class="nav-btn" id="today-bookings">Current Room Bookings</button>
       <button class="nav-btn" id="future-bookings">Future Room Bookings</button>
+      </section>
+    </nav>`).hide().show(750)
+},
+
+
+addManagerNavBar() {
+  $('.nav-bar-container').prepend(`<nav>
+      <div class="nav-logo"><b>THE<span> UNDER</span>GROUND <span>INN</span></b></div>
+      <section class="nav-btns-container">
       </section>
     </nav>`).hide().show(750)
 },
