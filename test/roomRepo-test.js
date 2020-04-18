@@ -2,9 +2,7 @@ import chai from 'chai';
 const expect = chai.expect;
 import RoomRepo from '../src/RoomRepo';
 
-
-describe('Room Class', function(){
-  let singleRoom;
+describe('RoomRepo Class', function(){
   let roomRepo;
   let allRooms;
 
@@ -52,6 +50,8 @@ describe('Room Class', function(){
       "costPerNight": 340.17
       },
     ];
+
+
 
     roomRepo = new RoomRepo(allRooms)
 
