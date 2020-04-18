@@ -5,9 +5,7 @@ class RoomRepo {
 
 
   getRoomsByRoomNumber(roomNumber) {
-    return this.allRooms.filter(rooms => {
-      room.number === roomNumber;
-    })
+    return this.allRooms.filter(room => room.number === roomNumber);
   }
 
 
