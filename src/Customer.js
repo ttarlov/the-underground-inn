@@ -19,6 +19,15 @@ class Customer {
     return this.bookings.filter(booking => moment(booking.date, "YYYY/MM/DD").fromNow().includes('in'))
   }
 
+  calculateTotalAmountSpent() {
+    return this.bookings.reduce((totalSpend, booking) => {
+
+      totalSpend += booking.bookedRoom.costPerNight
+
+      return totalSpend
+    },0)
+  }
+
 
 }
 export default Customer
