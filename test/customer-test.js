@@ -225,14 +225,52 @@ describe('findPastBookings Method', function(){
   }
 ])
   });
+});
 
 describe('findBookingsForToday Method', function(){
-  it.only('should find all bookings for today', function(){
+  it('should find all bookings for today', function(){
     expect(customer.findBookingsForToday()).to.deep.eq([
+      {
+        id: '5fwrga9i7k55hl6sz',
+        userID: 1,
+        date: '2020/04/18',
+        roomNumber: 3,
+        roomServiceCharges: [],
+        bookedRoom: {
+          number: 3,
+          roomType: 'single room',
+          bidet: false,
+          bedSize: 'king',
+          numBeds: 1,
+          costPerNight: 491.14
+        }
+      }
+    ])
+  });
+});
+
+describe('findFutureBookings Method', function(){
+  it.only('should find all future bookings', function(){
+    expect(customer.findFutureBookings()).to.deep.eq([
   {
-    id: '5fwrga9i7k55hl6sz',
+    id: '5fwrgu4i7k55hl6sz',
     userID: 1,
-    date: '2020/04/18',
+    date: '2022/02/04',
+    roomNumber: 1,
+    roomServiceCharges: [],
+    bookedRoom: {
+      number: 1,
+      roomType: 'residential suite',
+      bidet: true,
+      bedSize: 'queen',
+      numBeds: 1,
+      costPerNight: 358.4
+    }
+  },
+  {
+    id: '5fwrgu9i7k55hl6sz',
+    userID: 1,
+    date: '2022/02/15',
     roomNumber: 3,
     roomServiceCharges: [],
     bookedRoom: {
@@ -249,8 +287,6 @@ describe('findBookingsForToday Method', function(){
 
 });
 
-
-});
 
 
 }); //main describe block ends here
