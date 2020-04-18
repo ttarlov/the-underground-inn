@@ -33,7 +33,7 @@ getTotalRoomsAvailableToday() {
     }
   });
   let availableRooms = totalRooms - totalBookingsForToday
-  domUpdates.showAvailableRoomsTodayCard(availableRooms); //<-- SPY TEST THIS
+  domUpdates.showAvailableRoomsTodayCard(availableRooms);
   return availableRooms;
 }
 
@@ -46,7 +46,7 @@ calculateTotalRevenueForToday() {
     return totalRevenue
   },0)
 
-  domUpdates.showTotalRevenueForToday(totalRevenue);//<-SPY TEST THIS!!!!
+  domUpdates.showTotalRevenueForToday(totalRevenue);
   return totalRevenue;
 }
 
