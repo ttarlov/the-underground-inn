@@ -250,7 +250,7 @@ describe('findBookingsForToday Method', function(){
 });
 
 describe('findFutureBookings Method', function(){
-  it.only('should find all future bookings', function(){
+  it('should find all future bookings', function(){
     expect(customer.findFutureBookings()).to.deep.eq([
   {
     id: '5fwrgu4i7k55hl6sz',
@@ -287,6 +287,12 @@ describe('findFutureBookings Method', function(){
 
 });
 
+describe('calculateTotalAmountSpent Method', function(){
+  it.only('should be able to calculate total amount spent on rooms', function(){
+    expect(customer.calculateTotalAmountSpent()).to.eq(2309.2)
+  });
+
+});
 
 
 }); //main describe block ends here
