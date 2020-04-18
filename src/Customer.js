@@ -8,10 +8,13 @@ class Customer {
 
 
   findPastBookings() {
-    return this.bookings.filter(booking => {
-    return  moment(booking.date, "YYYY/MM/DD").fromNow().includes('ago')
-    })
+    return this.bookings.filter(booking => moment(booking.date, "YYYY/MM/DD").fromNow().includes('ago'))
   }
+
+  findBookingsForToday() {
+    return this.bookings.filter(booking => booking.date === moment().format("YYYY/MM/DD"))
+  }
+
 
 }
 export default Customer
