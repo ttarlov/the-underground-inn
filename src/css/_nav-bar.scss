@@ -1,10 +1,50 @@
 nav {
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  align-items: center;
   width: auto;
-  height: 200px;
+  height: 220px;
   border: solid $border-color;
   border-radius: $border-radius;
   box-shadow: $default-shadow;
   margin: 15px 15px 100px 15px;
+
+  .nav-btns-container {
+    display: flex;
+    justify-content: space-around;
+    width:100%;
+    height: auto;
+
+    button {
+      margin-bottom: 15px;
+      font-size: 1.2em;
+      width: 15%;
+      height: 72px;
+      background: none;
+      @include borderStyle;
+      @include buttonsOrHeadings;
+
+      &:hover {
+        transform: scale(1.2);
+      }
+
+    }
+  }
+
+}
+
+.nav-logo {
+  text-align: center;
+  width: 65%;
+  margin: 0px;
+  user-select: none;
+
+  b {
+    font-family: "Vibur";
+    font-size: 5em;
+    color: #fee;
+    text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em #ff4444, 0 0 0.5em #ff4444, 0 0 0.1em #ff4444, 0 10px 3px #000;
+  }
+
 }
