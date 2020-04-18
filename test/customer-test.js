@@ -3,6 +3,7 @@ const expect = chai.expect;
 import Customer from '../src/Customer';
 import User from '../src/User';
 import CustomerRepo from '../src/Customer-repo'
+const moment = require("moment");
 
 
 describe('Customer Class', function(){
@@ -12,8 +13,10 @@ describe('Customer Class', function(){
   let allUsers;
   let allRooms;
   let allBookings;
+  let today;
 
     beforeEach(function(){
+      today = moment().format("YYYY/MM/DD")
       allUsers = [
         {
         "id": 1,
@@ -82,6 +85,13 @@ describe('Customer Class', function(){
         "id": "5fwrgu9i7k55hl6sz",
         "userID": 1,
         "date": "2022/02/15",
+        "roomNumber": 3,
+        "roomServiceCharges": []
+        },
+        {
+        "id": "5fwrga9i7k55hl6sz",
+        "userID": 1,
+        "date": today,
         "roomNumber": 3,
         "roomServiceCharges": []
         },
@@ -160,13 +170,28 @@ describe('Customer Class', function(){
       numBeds: 1,
       costPerNight: 491.14
     }
+  },
+  {
+    id: '5fwrga9i7k55hl6sz',
+    userID: 1,
+    date: '2020/04/18',
+    roomNumber: 3,
+    roomServiceCharges: [],
+    bookedRoom: {
+      number: 3,
+      roomType: 'single room',
+      bidet: false,
+      bedSize: 'king',
+      numBeds: 1,
+      costPerNight: 491.14
+    }
   }
 ])
   });
 
 describe('findPastBookings Method', function(){
 
-  it.only('should find all past bookings', function(){
+  it('should find all past bookings', function(){
     expect(customer.findPastBookings()).to.deep.eq([
   {
     id: '5fwrgu4i7k55hl6t5',
@@ -198,9 +223,32 @@ describe('findPastBookings Method', function(){
       costPerNight: 491.14
     }
   }
-]
-)
+])
   });
+
+describe('findBookingsForToday Method', function(){
+  it.only('should find all bookings for today', function(){
+    expect(customer.findBookingsForToday()).to.deep.eq([
+  {
+    id: '5fwrga9i7k55hl6sz',
+    userID: 1,
+    date: '2020/04/18',
+    roomNumber: 3,
+    roomServiceCharges: [],
+    bookedRoom: {
+      number: 3,
+      roomType: 'single room',
+      bidet: false,
+      bedSize: 'king',
+      numBeds: 1,
+      costPerNight: 491.14
+    }
+  }
+])
+  });
+
+});
+
 
 });
 
