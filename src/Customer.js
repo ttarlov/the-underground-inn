@@ -1,8 +1,9 @@
 class Customer {
-  constructor(singleCustomer) {
-    this.id = singleCustomer.id;
-    this.name = singleCustomer.name;
+  constructor(customer) {
+    this.id = customer.id;
+    this.name = customer.name;
+    this.bookings = customer.bookings;
   }
-}
 
-export default Customer;
+}
+export default Customer
