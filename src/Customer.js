@@ -1,4 +1,5 @@
 const moment = require("moment");
+import domUpdates from './dom-updates'
 class Customer {
   constructor(customer) {
     this.id = customer.id;
@@ -8,11 +9,15 @@ class Customer {
 
 
   findPastBookings() {
-    return this.bookings.filter(booking => moment(booking.date, "YYYY/MM/DD").fromNow().includes('ago'))
+    let pastBookings = this.bookings.filter(booking => moment(booking.date, "YYYY/MM/DD").fromNow().includes('ago'))
+    domUpdates.showPastBookings(pastBookings) // <---TEST WITH SPIES
+    return pastBookings
   }
 
   findBookingsForToday() {
-    return this.bookings.filter(booking => booking.date === moment().format("YYYY/MM/DD"))
+    let todaysBookings = this.bookings.filter(booking => booking.date === moment().format("YYYY/MM/DD"))
+    domUpdates.showBookingsForToday(todaysBookings);
+    return todaysBookings
   }
 
   findFutureBookings() {
