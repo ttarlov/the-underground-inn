@@ -81,6 +81,7 @@ const createClinet = (allRooms, allBookings, allUsers, customerID) => {
   let allUsersArray = allUsers.map(user => new User(user))
   let customerRepo = new CustomerRepo(allUsersArray, allBookingsArray, allRoomsArray)
   loggedInCustomer = new Customer(customerRepo.getCustomerById(customerID))
+  loggedInCustomer.calculateTotalAmountSpent();
   console.log(loggedInCustomer);
 };
 
@@ -89,6 +90,8 @@ const eventHandler = (event) => {
     loggedInCustomer.findPastBookings();
   } else if (event.target.id === "today-bookings") {
     loggedInCustomer.findBookingsForToday();
+  } else if (event.target.id === "future-bookings") {
+    loggedInCustomer.findFutureBookings();
   }
 }
 
