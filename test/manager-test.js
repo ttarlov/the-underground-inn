@@ -1,6 +1,10 @@
 import chai from 'chai';
 const expect = chai.expect;
 const moment = require("moment");
+const spies = require("chai-spies");
+chai.use(spies);
+import domUpdates from "../src/dom-updates.js";
+
 
 import Manager from '../src/Manager';
 import Room from '../src/Room';
@@ -14,8 +18,17 @@ describe('Manager Class', function(){
   let roomsArry;
   let bookingsArry;
 
+  afterEach(() => {
+    chai.spy.restore(domUpdates);
+  });
+
 beforeEach(function(){
-  today = moment().format("YYYY/MM/DD")
+
+  chai.spy.on(domUpdates, "showAvailableRoomsTodayCard", () => {});
+  chai.spy.on(domUpdates, "showTotalRevenueForToday", () => {});
+  chai.spy.on(domUpdates, "showPecentageOfRoomsOccupied", () => {});
+
+  today = moment().format("YYYY/MM/DD");
 
   rooms = [
     {
@@ -147,6 +160,8 @@ describe('addRoomsToBookings Method', function(){
 
     it('should get available rooms for today', function(){
       expect(manager.getTotalRoomsAvailableToday()).to.eq(23)
+      expect(domUpdates.showAvailableRoomsTodayCard).to.have.been.called(1)
+      expect(domUpdates.showAvailableRoomsTodayCard).to.have.been.called.with(23)
     });
 
   });
@@ -155,7 +170,8 @@ describe('addRoomsToBookings Method', function(){
 
     it('should be able to calculate total revenue for today', function(){
       expect(manager.calculateTotalRevenueForToday()).to.eq(968.52)
-
+      expect(domUpdates.showTotalRevenueForToday).to.have.been.called(1)
+      expect(domUpdates.showTotalRevenueForToday).to.have.been.called.with(968.52)
     });
 
     describe('findTodaysBookings Method', function(){
@@ -164,7 +180,7 @@ describe('addRoomsToBookings Method', function(){
             {
               id: '5fwrgu4i7k55hl6t5',
               userID: 43,
-              date: '2020/04/16',
+              date: today,
               roomNumber: 2,
               roomServiceCharges: [],
               bookedRoom: {
@@ -179,7 +195,7 @@ describe('addRoomsToBookings Method', function(){
             {
               id: '5fwrgu4i7k55hl6t6',
               userID: 13,
-              date: '2020/04/16',
+              date: today,
               roomNumber: 3,
               roomServiceCharges: [],
               bookedRoom: {
@@ -198,8 +214,10 @@ describe('addRoomsToBookings Method', function(){
 
   describe('findPercentageOfRoomsOccupiedForToday Method', function(){
 
-    it('should calculate percentage of rooms occuped for today', function(){
-      console.log(manager.findPercentageOfRoomsOccupiedForToday());
+    it ('should calculate percentage of rooms occuped for today', function(){
+      expect(manager.findPercentageOfRoomsOccupiedForToday()).to.eq(8)
+      expect(domUpdates.showPecentageOfRoomsOccupied).to.have.been.called(1)
+      expect(domUpdates.showPecentageOfRoomsOccupied).to.have.been.called.with(8)
     });
 
 
