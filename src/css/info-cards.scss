@@ -5,9 +5,7 @@
   align-items: center;
   width: 20%;
   height: 200px;
-  border: solid $border-color;
-  border-radius: $border-radius;
-  box-shadow: $default-shadow;
+  @include borderStyle
 
   p:nth-child(1) {
     font-size: 1.5vw;
