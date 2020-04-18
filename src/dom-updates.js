@@ -53,7 +53,6 @@ showPastBookings(pastBookings) {
 },
 
 showBookingsForToday(todaysBookings) {
-  console.log(todaysBookings);
   if(todaysBookings.length === 0) {
     $("main").html("");
     $("main").prepend(`<section class="booking-cards">
@@ -72,6 +71,35 @@ showBookingsForToday(todaysBookings) {
         `)
     });
   }
+},
+
+showFutureBookings(futureBookings) {
+  if(futureBookings.length === 0) {
+    $("main").html("");
+    $("main").prepend(`<section class="booking-cards">
+      <p class="no-rooms-found">You Have No Rooms Booked</p>
+    </section>`)
+  } else {
+    $("main").html("");
+    $("main").prepend(`<section class="bookings-container"> </section>`)
+    futureBookings.forEach(booking => {
+      $(".bookings-container").prepend(`
+        <section class="booking-cards">
+        <p>Booking Date: ${booking.date}</p>
+        <p>Room Number: ${booking.roomNumber}</p>
+        <p>Rooms Service Charges: ${booking.roomServiceCharges}
+        </section>
+        `)
+    });
+  }
+},
+
+showAmountSpentOnRooms(name, totalAmount) {
+  console.log(totalAmount);
+  $("main").prepend(`<section class="booking-cards">
+    <p class="no-rooms-found"> Welcome ${name}</p>
+    <p class="no-rooms-found"> So Far You Spent: $${totalAmount} on bookings</p>
+  </section>`)
 }
 
 
