@@ -1,0 +1,16 @@
+.filter-container {
+  @include borderStyle;
+  width: 30%;
+  height: 100px;
+  margin: 10px;
+  background-color: rgba(255, 255, 255, 0.7);
+  @include column-center-flex;
+  justify-content: space-around;
+
+  button {
+    width: 15%;
+    height: 30px;
+  }
+
+
+}
