@@ -1,11 +1,14 @@
 import User from '../src/User';
+import domUpdates from './dom-updates'
 
 class CustomerRepo {
   constructor(allCustomers, allBookings, allRooms) {
+    this.allRooms = allRooms
     this.bookings = allBookings;
     this.customers = allCustomers;
     this.addRoomsToBookings(allRooms);
     this.addBookingsToCustomers();
+    this.bookableRooms = null;
   }
 
   getCustomerById(id) {
@@ -36,9 +39,38 @@ class CustomerRepo {
     })
   }
 
+  getRoomsAvailableForGivenDate(date) {
+    let bookedRooms = []
 
+    this.bookings.forEach(booking => {
+      if(booking.date === date) {
+        bookedRooms.push(booking.roomNumber)
+      }
+    });
 
+  let bookableRooms = this.allRooms.reduce((availableRooms, room)=> {
 
+     if(!bookedRooms.includes(room.number)) {
+       availableRooms.push(room)
+     }
+
+     return availableRooms
+   },[]);
+    // console.log("bookedRooms", bookedRooms);
+    // console.log("BOOKABLE ROOMS", bookableRooms);
+    this.bookableRooms = bookableRooms;
+    domUpdates.showAvailableRooms(bookableRooms)//<--- TEST WITH SPY
+  return bookableRooms
 }
 
-export default  CustomerRepo;
+  filterRoomsByType(selectedRoomType) {
+    // console.log(this.bookableRooms);
+  let matchedRooms = this.bookableRooms.filter(room => {
+    return  room.roomType === selectedRoomType
+    })
+    domUpdates.showAvailableRooms(matchedRooms); //<--- TEST WITH SPY
+    return matchedRooms
+  }
+
+}
+export default CustomerRepo;
