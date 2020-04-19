@@ -10,7 +10,16 @@
     <section class = "nav-bar-container">
 
     </section>
-
+    <section class="filter-container hidden">
+      <label for="filter by type">Select Room Type:</label>
+      <select id="tags">
+        <option value="single room">Single Room</option>
+        <option value="residential suite">Residential Suite</option>
+        <option value="suite">Suite</option>
+        <option value="junior suite">Junior Suite</option>
+      </select>
+      <button id="filter-btn" type="button">Search</button>
+    </section>
   <main>
     <section class="neon-sign-login-container">
       <div class="logo"><b>THE<span> UNDER</span>GROUND <span>INN</span></b></div>
@@ -18,8 +27,8 @@
   <div class="login-page">
   <div class="form">
     <form class="login-form">
-      <input id="username-input" type="text" placeholder="username"/>
-      <input id="password-input" type="text" placeholder="password"/>
+      <input id="username-input" type="text" placeholder="username" value="customer"/>
+      <input id="password-input" type="text" placeholder="password" value="overlook2019"/>
       <button id="log-in-btn">login</button>
     </form>
   </div>
