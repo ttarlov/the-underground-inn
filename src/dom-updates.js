@@ -136,22 +136,24 @@ showAvailableRooms(availableRooms) {
 
   availableRooms.forEach(room => {
     if(room.bidet === true) {
-      $(".room-card-container").prepend(`<section class="room-card" id=${room.number}>
+      $(".room-card-container").prepend(`<section class="room-card">
       <h2>Room Type: <span class="room-type">${room.roomType}</span></h2>
       <h3 class="included-amenities">Amenities:</h3>
       <p class="amenity">Bidet: Yes</p>
       <p class="amenity">Bed Size: ${room.bedSize}</p>
       <p class="amenity">Number of Beds: ${room.numBeds}</p>
       <p class="room-cost">Cost Per Night: $${room.costPerNight}</p>
+      <button type="button" id=${room.number}>Book This Room</button>
       </section>`)
     } else {
-      $(".room-card-container").prepend(`<section class="room-card" id=${room.number}>
+      $(".room-card-container").prepend(`<section class="room-card">
       <h2>Room Type: <span class="room-type">${room.roomType}</span></h2>
       <h3 class="included-amenities">Amenities:</h3>
       <p class="amenity">Bidet: No</p>
       <p class="amenity">Bed Size: ${room.bedSize}</p>
       <p class="amenity">Number of Beds: ${room.numBeds}</p>
       <p class="room-cost">Cost Per Night: $${room.costPerNight}</p>
+      <button type="button" id=${room.number}>Book This Room</button>
       </section>`)
     }
 
