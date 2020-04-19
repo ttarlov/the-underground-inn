@@ -64,6 +64,10 @@ class CustomerRepo {
 }
 
   filterRoomsByType(selectedRoomType) {
+      if(selectedRoomType === "all rooms") {
+        domUpdates.showAvailableRooms(this.bookableRooms)
+        return this.bookableRooms
+      }
     // console.log(this.bookableRooms);
   let matchedRooms = this.bookableRooms.filter(room => {
     return  room.roomType === selectedRoomType
