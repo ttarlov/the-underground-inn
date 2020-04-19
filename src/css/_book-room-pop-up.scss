@@ -34,6 +34,23 @@
     font-size: 2em;
   }
 
+  button {
+    width: 50%;
+    height: 50px;
+    font-size: 1em;
+    margin-bottom: 15px;
+    background: none;
+    @include borderStyle;
+    @include buttonsOrHeadings;
+    color: black;
+
+    &:hover {
+      transform: scale(1.2);
+    }
+
+  }
+
+
 }
 
 .room-cost {
