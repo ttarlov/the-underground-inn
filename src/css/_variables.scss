@@ -1,0 +1,23 @@
+$hard-to-read-one: "Righteous";
+$default-box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+$border-color: #fee;
+$border-radius: 5px;
+$default-shadow: 0px -1px 4px, 0 0 2px, 0 0 1em #ff4444, 0 0 0.5em #ff4444, 0 0 0.1em #ff4444, 0 10px 3px #000;
+$logo-font: 400 "Vibur";
+
+@mixin borderStyle {
+  border: solid $border-color;
+  border-radius: $border-radius;
+  box-shadow: $default-shadow;
+};
+
+@mixin buttonsOrHeadings {
+  color: #fee;
+  text-shadow: 0px 0px 0px, 0 0 2px, 0 0 0em #ff4444, 0px 0px 0em #ff4444, 0 0 1em #ff4444, 0px 6px 8px #000;
+  font-family: "Righteous"
+}
+@mixin column-center-flex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
