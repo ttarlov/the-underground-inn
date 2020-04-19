@@ -1,0 +1,48 @@
+.room-card-container {
+  width: 100%;
+  height: inherit;
+  display: flex;
+  overflow: scroll;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.room-card {
+  @include column-center-flex;
+  justify-content: space-around;
+  width: 30%;
+  height: 350px;
+  margin: 20px;
+  @include borderStyle;
+  background-color: rgba(255, 255, 255, 0.7);
+
+  h2 {
+    @include buttonsOrHeadings;
+    font-size: 2em;
+    color: black;
+  }
+
+  span {
+    text-transform: capitalize;
+  }
+
+  p {
+    font-size: 1.3em;
+  }
+
+  p:nth-child(6) {
+    font-size: 2em;
+  }
+
+}
+
+.room-cost {
+  font-size: 2em;
+  @include buttonsOrHeadings;
+  font-size: 1.5em;
+  color: black;
+}
+.included-amenities {
+  font-size: 1.5em;
+  text-decoration: underline;
+}
