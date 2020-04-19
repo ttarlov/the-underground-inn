@@ -1,5 +1,5 @@
 import $ from 'jquery';
-
+const moment = require("moment");
 let domUpdates = {
 
 hideLoginWindow() {
@@ -13,6 +13,7 @@ addCustomerNavBar() {
       <button class="nav-btn" id="past-bookings">Past Room Bookings</button>
       <button class="nav-btn" id="today-bookings">Current Room Bookings</button>
       <button class="nav-btn" id="future-bookings">Future Room Bookings</button>
+      <button class="nav-btn" id="book-room"> Book A Room </button>
       </section>
     </nav>`).hide().show(750)
 },
@@ -109,9 +110,55 @@ showAmountSpentOnRooms(name, totalAmount) {
     <p class="no-rooms-found"> Welcome ${name}</p>
     <p class="no-rooms-found"> So Far You Spent: $${totalAmount} on bookings</p>
   </section>`)
+},
+
+showRoomBooking() {
+  $("main").html("");
+  $("main").prepend(`<section class="booking-cards">
+  <p class="no-rooms-found"> Book A Room</p>
+   <form>
+    <label>Select Date:</label>
+    <input type="date" id="input-date" name="booking-date"
+       value="${moment().format("YYYY-MM-DD")}"
+       min="${moment().format("YYYY-MM-DD")}" min= "${moment().format("YYYY-MM-DD")}" max="2028-12-31">
+       <button type="button" class="available-rooms-btn" id="check-rooms">See Available Rooms</button>
+   </form>
+  </section>`)
+},
+
+showAvailableRooms(availableRooms) {
+
+  console.log(availableRooms);
+  $("main").html("");
+  $(".filter-container").removeClass("hidden")
+  $('main').prepend(`<section class="room-card-container">
+  </section>`);
+
+  availableRooms.forEach(room => {
+    if(room.bidet === true) {
+      $(".room-card-container").prepend(`<section class="room-card" id=${room.number}>
+      <h2>Room Type: <span class="room-type">${room.roomType}</span></h2>
+      <h3 class="included-amenities">Amenities:</h3>
+      <p class="amenity">Bidet: Yes</p>
+      <p class="amenity">Bed Size: ${room.bedSize}</p>
+      <p class="amenity">Number of Beds: ${room.numBeds}</p>
+      <p class="room-cost">Cost Per Night: $${room.costPerNight}</p>
+      </section>`)
+    } else {
+      $(".room-card-container").prepend(`<section class="room-card" id=${room.number}>
+      <h2>Room Type: <span class="room-type">${room.roomType}</span></h2>
+      <h3 class="included-amenities">Amenities:</h3>
+      <p class="amenity">Bidet: No</p>
+      <p class="amenity">Bed Size: ${room.bedSize}</p>
+      <p class="amenity">Number of Beds: ${room.numBeds}</p>
+      <p class="room-cost">Cost Per Night: $${room.costPerNight}</p>
+      </section>`)
+    }
+
+  })
 }
 
 
-} //domUpdates Closes Here
+}; //domUpdates Closes Here
 
 export default domUpdates;
