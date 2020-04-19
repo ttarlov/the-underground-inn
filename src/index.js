@@ -16,6 +16,7 @@ const api = new ApiController();
 const moment = require("moment");
 let loggedInCustomer;
 let manager;
+let customerRepo;
 
 const generateUserId = () => {
   let userName = $('#username-input').val();
@@ -30,7 +31,7 @@ const generateUserId = () => {
 
 // will go inside a user class
 function processLogIn(data) {
-  if($('#password-input').val() === 'overlook2019' && $('#username-input').val().includes('customer'))  {
+  if($('#password-input').val() === 'overlook2019' && $('#username-input').val().includes('customer') && $('#username-input').val().length > 9)  {
       event.preventDefault();
       fetchData(createClinet, generateUserId())
       domUpdates.hideLoginWindow();
@@ -79,7 +80,7 @@ const createClinet = (allRooms, allBookings, allUsers, customerID) => {
   let allRoomsArray = allRooms.map(room => new Room(room));
   let allBookingsArray = allBookings.map(booking => new Booking(booking));
   let allUsersArray = allUsers.map(user => new User(user))
-  let customerRepo = new CustomerRepo(allUsersArray, allBookingsArray, allRoomsArray)
+  customerRepo = new CustomerRepo(allUsersArray, allBookingsArray, allRoomsArray)
   loggedInCustomer = new Customer(customerRepo.getCustomerById(customerID))
   loggedInCustomer.calculateTotalAmountSpent();
   console.log(loggedInCustomer);
@@ -90,13 +91,25 @@ const eventHandler = (event) => {
     loggedInCustomer.findPastBookings();
   } else if (event.target.id === "today-bookings") {
     loggedInCustomer.findBookingsForToday();
+  } else if (event.target.id === "book-room") {
+    domUpdates.showRoomBooking();
   } else if (event.target.id === "future-bookings") {
     loggedInCustomer.findFutureBookings();
+  } else if(event.target.id === "check-rooms") {
+    console.log($("#input-date").val().split("-").join("/"));
+    customerRepo.getRoomsAvailableForGivenDate($("#input-date").val().split("-").join("/"))
+  } else if(event.target.id === "filter-btn") {
+    searchByRoomType()
   }
 }
 
-
-
+const searchByRoomType = () => {
+  let selectedRoomType = $("#tags").val()
+  console.log(selectedRoomType);
+  customerRepo.filterRoomsByType(selectedRoomType)
+  // let matchedRecipes = user.filterMyRecipesByTag(allRecipes, selectedTag);
+  // displayRecipes(matchedRecipes)
+}
 
 
 
