@@ -6,7 +6,7 @@ class Customer {
     this.id = customer.id;
     this.name = customer.name;
     this.bookings = customer.bookings;
-    this.apiController = new ApiController() //<--- TEST THIS
+    this.apiController = new ApiController()
   }
 
 
@@ -42,7 +42,7 @@ class Customer {
 
 //NEEDS  TESTING
 submitABooking(id, date, roomNumber) {
-  
+
   return this.apiController.bookARoom(id, date, roomNumber)
 }
 
