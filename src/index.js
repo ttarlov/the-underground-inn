@@ -101,8 +101,10 @@ const eventHandler = (event) => {
   } else if(event.target.id === "filter-btn") {
     searchByRoomType()
   } else if(event.target.classList.contains("book-room")) {
-    loggedInCustomer.submitABooking(loggedInCustomer.id, customerRepo.choosenDate, event.target.id).then(() => window.alert("Booking Successful"))
-    fetchData(createClinet, loggedInCustomer.id);
+    loggedInCustomer.submitABooking(loggedInCustomer.id, customerRepo.choosenDate, event.target.id)
+    .then(() => fetchData(createClinet, loggedInCustomer.id))
+    .then(() => window.alert("Booking Successful"))
+    // fetchData(createClinet, loggedInCustomer.id);
     $(".filter-container").addClass("hidden");
   }
 }
