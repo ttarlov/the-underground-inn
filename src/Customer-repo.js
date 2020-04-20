@@ -9,6 +9,7 @@ class CustomerRepo {
     this.addRoomsToBookings(allRooms);
     this.addBookingsToCustomers();
     this.bookableRooms = null;
+    this.choosenDate = null;
   }
 
   getCustomerById(id) {
@@ -40,6 +41,7 @@ class CustomerRepo {
   }
 
   getRoomsAvailableForGivenDate(date) {
+    this.choosenDate = date;
     let bookedRooms = []
 
     this.bookings.forEach(booking => {
@@ -59,7 +61,7 @@ class CustomerRepo {
     // console.log("bookedRooms", bookedRooms);
     // console.log("BOOKABLE ROOMS", bookableRooms);
     this.bookableRooms = bookableRooms;
-    domUpdates.showAvailableRooms(bookableRooms)//<--- TEST WITH SPY
+    domUpdates.showAvailableRooms(bookableRooms)
   return bookableRooms
 }
 
@@ -72,7 +74,7 @@ class CustomerRepo {
   let matchedRooms = this.bookableRooms.filter(room => {
     return  room.roomType === selectedRoomType
     })
-    domUpdates.showAvailableRooms(matchedRooms); //<--- TEST WITH SPY
+    domUpdates.showAvailableRooms(matchedRooms);
     return matchedRooms
   }
 
