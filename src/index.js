@@ -31,7 +31,7 @@ const generateUserId = () => {
 
 // will go inside a user class
 function processLogIn(data) {
-  if($('#password-input').val() === 'overlook2019' && $('#username-input').val().includes('customer') && $('#username-input').val().length > 9)  {
+  if($('#password-input').val() === 'overlook2019' && $('#username-input').val().includes('customer') && $('#username-input').val().length > 8)  {
       event.preventDefault();
       fetchData(createClinet, generateUserId())
       domUpdates.hideLoginWindow();
@@ -100,6 +100,10 @@ const eventHandler = (event) => {
     customerRepo.getRoomsAvailableForGivenDate($("#input-date").val().split("-").join("/"))
   } else if(event.target.id === "filter-btn") {
     searchByRoomType()
+  } else if(event.target.classList.contains("book-room")) {
+    loggedInCustomer.submitABooking(loggedInCustomer.id, customerRepo.choosenDate, event.target.id).then(() => window.alert("Booking Successful"))
+    fetchData(createClinet, loggedInCustomer.id);
+    $(".filter-container").addClass("hidden");
   }
 }
 
