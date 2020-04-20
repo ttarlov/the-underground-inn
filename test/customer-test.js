@@ -188,7 +188,7 @@ describe('Customer Class', function(){
   {
     id: '5fwrga9i7k55hl6sz',
     userID: 1,
-    date: '2020/04/18',
+    date: today,
     roomNumber: 3,
     roomServiceCharges: [],
     bookedRoom: {
@@ -240,7 +240,7 @@ describe('findPastBookings Method', function(){
   {
     id: '5fwrga9i7k55hl6sz',
     userID: 1,
-    date: '2020/04/18',
+    date: today,
     roomNumber: 3,
     roomServiceCharges: [],
     bookedRoom: {
@@ -289,7 +289,7 @@ bookedRoom: {
 {
 id: '5fwrga9i7k55hl6sz',
 userID: 1,
-date: '2020/04/18',
+date: today,
 roomNumber: 3,
 roomServiceCharges: [],
 bookedRoom: {
@@ -311,7 +311,7 @@ describe('findBookingsForToday Method', function(){
       {
         id: '5fwrga9i7k55hl6sz',
         userID: 1,
-        date: '2020/04/18',
+        date: today,
         roomNumber: 3,
         roomServiceCharges: [],
         bookedRoom: {
@@ -329,7 +329,7 @@ describe('findBookingsForToday Method', function(){
       {
         id: '5fwrga9i7k55hl6sz',
         userID: 1,
-        date: '2020/04/18',
+        date: today,
         roomNumber: 3,
         roomServiceCharges: [],
         bookedRoom: {
@@ -422,7 +422,6 @@ describe('calculateTotalAmountSpent Method', function(){
     expect(domUpdates.showAmountSpentOnRooms).to.have.been.called(1)
     expect(domUpdates.showAmountSpentOnRooms).to.have.been.called.with("Leatha Ullrich", "2309.20")
   });
-
 });
 
 

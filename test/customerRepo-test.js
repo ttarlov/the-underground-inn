@@ -5,6 +5,11 @@ import User from '../src/User'
 import Booking from '../src/Booking'
 import Room from '../src/Room'
 
+const spies = require("chai-spies");
+chai.use(spies);
+import domUpdates from "../src/dom-updates.js";
+
+
 describe('Customer Repo Class', function(){
   let allRooms;
   let allUsers;
@@ -14,7 +19,17 @@ describe('Customer Repo Class', function(){
   let customerRepo;
   let userArry
 
+  afterEach(() => {
+    chai.spy.restore(domUpdates);
+  });
+
+
+
   beforeEach(function(){
+
+    chai.spy.on(domUpdates, "showAvailableRooms", () => {});
+
+
     allUsers = [
       {
       "id": 1,
@@ -54,6 +69,14 @@ describe('Customer Repo Class', function(){
       "bedSize": "king",
       "numBeds": 1,
       "costPerNight": 491.14
+      },
+      {
+      "number": 8,
+      "roomType": "single room",
+      "bidet": false,
+      "bedSize": "king",
+      "numBeds": 1,
+      "costPerNight": 650
       },
     ];
 
@@ -111,63 +134,158 @@ describe('getCustomerById Method', function(){
 
 describe('addRoomsToBookings method', function(){
 
-it('should add matching rooms to bookings', function(){
-  expect(customerRepo.bookings).to.deep.eq([
+  it('should add matching rooms to bookings', function(){
+    expect(customerRepo.bookings).to.deep.eq([
+      {
+        id: '5fwrgu4i7k55hl6sz',
+        userID: 1,
+        date: '2020/02/04',
+        roomNumber: 1,
+        roomServiceCharges: [],
+        bookedRoom: {
+          number: 1,
+          roomType: 'residential suite',
+          bidet: true,
+          bedSize: 'queen',
+          numBeds: 1,
+          costPerNight: 358.4
+        }
+      },
+      {
+        id: '5fwrgu4i7k55hl6t5',
+        userID: 2,
+        date: '2020/01/24',
+        roomNumber: 2,
+        roomServiceCharges: [],
+        bookedRoom: {
+          number: 2,
+          roomType: 'suite',
+          bidet: false,
+          bedSize: 'full',
+          numBeds: 2,
+          costPerNight: 477.38
+        }
+      },
+      {
+        id: '5fwrgu4i7k55hl6t6',
+        userID: 3,
+        date: '2020/01/10',
+        roomNumber: 3,
+        roomServiceCharges: [],
+        bookedRoom: {
+          number: 3,
+          roomType: 'single room',
+          bidet: false,
+          bedSize: 'king',
+          numBeds: 1,
+          costPerNight: 491.14
+        }
+      }
+    ])
+  });
+});
+
+describe('getRoomsAvailableForGivenDate Method', function(){
+  it('should get available rooms for given date', function(){
+    expect(customerRepo.getRoomsAvailableForGivenDate('2020/01/24')).to.deep.eq([
   {
-    id: '5fwrgu4i7k55hl6sz',
-    userID: 1,
-    date: '2020/02/04',
-    roomNumber: 1,
-    roomServiceCharges: [],
-    bookedRoom: {
-      number: 1,
-      roomType: 'residential suite',
-      bidet: true,
-      bedSize: 'queen',
-      numBeds: 1,
-      costPerNight: 358.4
-    }
+    number: 1,
+    roomType: 'residential suite',
+    bidet: true,
+    bedSize: 'queen',
+    numBeds: 1,
+    costPerNight: 358.4
   },
   {
-    id: '5fwrgu4i7k55hl6t5',
-    userID: 2,
-    date: '2020/01/24',
-    roomNumber: 2,
-    roomServiceCharges: [],
-    bookedRoom: {
-      number: 2,
-      roomType: 'suite',
-      bidet: false,
-      bedSize: 'full',
-      numBeds: 2,
-      costPerNight: 477.38
-    }
+    number: 3,
+    roomType: 'single room',
+    bidet: false,
+    bedSize: 'king',
+    numBeds: 1,
+    costPerNight: 491.14
   },
   {
-    id: '5fwrgu4i7k55hl6t6',
-    userID: 3,
-    date: '2020/01/10',
-    roomNumber: 3,
-    roomServiceCharges: [],
-    bookedRoom: {
-      number: 3,
-      roomType: 'single room',
-      bidet: false,
-      bedSize: 'king',
-      numBeds: 1,
-      costPerNight: 491.14
-    }
+    number: 8,
+    roomType: 'single room',
+    bidet: false,
+    bedSize: 'king',
+    numBeds: 1,
+    costPerNight: 650
   }
+]);
+  expect(domUpdates.showAvailableRooms).to.have.been.called(1)
+  expect(domUpdates.showAvailableRooms).to.have.been.called.with([
+{
+  number: 1,
+  roomType: 'residential suite',
+  bidet: true,
+  bedSize: 'queen',
+  numBeds: 1,
+  costPerNight: 358.4
+},
+{
+  number: 3,
+  roomType: 'single room',
+  bidet: false,
+  bedSize: 'king',
+  numBeds: 1,
+  costPerNight: 491.14
+},
+{
+  number: 8,
+  roomType: 'single room',
+  bidet: false,
+  bedSize: 'king',
+  numBeds: 1,
+  costPerNight: 650
+}
 ])
-
-
-
-
-
+  });
 
 });
 
+describe('filterRoomsByType Method', function(){
 
+  it('should filter rooms based on the type', function(){
+    customerRepo.getRoomsAvailableForGivenDate('2020/01/24');
+    expect(customerRepo.filterRoomsByType("single room")).to.deep.eq([
+  {
+    number: 3,
+    roomType: 'single room',
+    bidet: false,
+    bedSize: 'king',
+    numBeds: 1,
+    costPerNight: 491.14
+  },
+  {
+    number: 8,
+    roomType: 'single room',
+    bidet: false,
+    bedSize: 'king',
+    numBeds: 1,
+    costPerNight: 650
+  }
+]);
+expect(domUpdates.showAvailableRooms).to.have.been.called(2)
+expect(domUpdates.showAvailableRooms).to.have.been.called.with([
+{
+number: 3,
+roomType: 'single room',
+bidet: false,
+bedSize: 'king',
+numBeds: 1,
+costPerNight: 491.14
+},
+{
+number: 8,
+roomType: 'single room',
+bidet: false,
+bedSize: 'king',
+numBeds: 1,
+costPerNight: 650
+}
+]);
+  });
 
 });
 

@@ -1,10 +1,12 @@
 const moment = require("moment");
 import domUpdates from './dom-updates'
+import ApiController from './api-controller'
 class Customer {
   constructor(customer) {
     this.id = customer.id;
     this.name = customer.name;
     this.bookings = customer.bookings;
+    this.apiController = new ApiController() //<--- TEST THIS
   }
 
 
@@ -38,6 +40,11 @@ class Customer {
 
   }
 
+//NEEDS  TESTING
+submitABooking(id, date, roomNumber) {
+  
+  return this.apiController.bookARoom(id, date, roomNumber)
+}
 
 }
 export default Customer

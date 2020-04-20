@@ -46,7 +46,7 @@ calculateTotalRevenueForToday() {
     return totalRevenue
   },0)
 
-  domUpdates.showTotalRevenueForToday(totalRevenue);
+  domUpdates.showTotalRevenueForToday(totalRevenue.toFixed(2));
   return totalRevenue;
 }
 
