@@ -171,7 +171,7 @@ describe('addRoomsToBookings Method', function(){
     it('should be able to calculate total revenue for today', function(){
       expect(manager.calculateTotalRevenueForToday()).to.eq(968.52)
       expect(domUpdates.showTotalRevenueForToday).to.have.been.called(1)
-      expect(domUpdates.showTotalRevenueForToday).to.have.been.called.with(968.52)
+      expect(domUpdates.showTotalRevenueForToday).to.have.been.called.with("968.52")
     });
 
     describe('findTodaysBookings Method', function(){
@@ -214,7 +214,7 @@ describe('addRoomsToBookings Method', function(){
 
   describe('findPercentageOfRoomsOccupiedForToday Method', function(){
 
-    it ('should calculate percentage of rooms occuped for today', function(){
+    it('should calculate percentage of rooms occuped for today', function(){
       expect(manager.findPercentageOfRoomsOccupiedForToday()).to.eq(8)
       expect(domUpdates.showPecentageOfRoomsOccupied).to.have.been.called(1)
       expect(domUpdates.showPecentageOfRoomsOccupied).to.have.been.called.with(8)
