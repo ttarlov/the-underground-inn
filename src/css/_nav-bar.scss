@@ -18,13 +18,14 @@ nav {
 
     button {
       margin-bottom: 15px;
-      font-size: 1.2em;
-      width: 15%;
-      height: 72px;
+      font-size: 1.2vw;
+      width: 24%;
+      height: 50px;
       background: none;
       @include borderStyle;
       @include buttonsOrHeadings;
-
+      margin-right: 15px;
+      margin-left: 15px;
       &:hover {
         transform: scale(1.2);
       }
@@ -42,7 +43,7 @@ nav {
 
   b {
     font-family: "Vibur";
-    font-size: 5em;
+    font-size: 5vw;
     color: #fee;
     text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em #ff4444, 0 0 0.5em #ff4444, 0 0 0.1em #ff4444, 0 10px 3px #000;
   }
