@@ -120,9 +120,62 @@ it('should be an instance of CustomerRepo Class', function(){
   expect(customerRepo).to.be.an.instanceof(CustomerRepo);
 });
 
-it.skip('should initialize with a list of customers', function(){
-  // console.log(customerRepo.customers);
-  expect(customerRepo.customers).to.deep.eq(allUsers)
+it('should initialize with a list of customers', function(){
+
+  expect(customerRepo.customers).to.deep.eq([
+  { id: 1, name: 'Leatha Ullrich', bookings: [
+  {
+    id: '5fwrgu4i7k55hl6sz',
+    userID: 1,
+    date: '2020/02/04',
+    roomNumber: 1,
+    roomServiceCharges: [],
+    bookedRoom: {
+      number: 1,
+      roomType: 'residential suite',
+      bidet: true,
+      bedSize: 'queen',
+      numBeds: 1,
+      costPerNight: 358.4
+    }
+  }
+] },
+  { id: 2, name: 'Rocio Schuster', bookings: [
+  {
+    id: '5fwrgu4i7k55hl6t5',
+    userID: 2,
+    date: '2020/01/24',
+    roomNumber: 2,
+    roomServiceCharges: [],
+    bookedRoom: {
+      number: 2,
+      roomType: 'suite',
+      bidet: false,
+      bedSize: 'full',
+      numBeds: 2,
+      costPerNight: 477.38
+    }
+  }
+]
+ },
+  { id: 3, name: 'Kelvin Schiller', bookings: [
+  {
+    id: '5fwrgu4i7k55hl6t6',
+    userID: 3,
+    date: '2020/01/10',
+    roomNumber: 3,
+    roomServiceCharges: [],
+    bookedRoom: {
+      number: 3,
+      roomType: 'single room',
+      bidet: false,
+      bedSize: 'king',
+      numBeds: 1,
+      costPerNight: 491.14
+    }
+  }
+] }
+])
 });
 
 describe('getCustomerById Method', function(){
