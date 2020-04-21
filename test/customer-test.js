@@ -425,7 +425,7 @@ describe('findFutureBookings Method', function(){
 describe('calculateTotalAmountSpent Method', function(){
   it('should be able to calculate total amount spent on rooms', function(){
     expect(customer.calculateTotalAmountSpent()).to.eq("2309.20")
-    expect(domUpdates.showAmountSpentOnRooms).to.have.been.called(1)
+    expect(domUpdates.showAmountSpentOnRooms).to.have.been.called(2)
     expect(domUpdates.showAmountSpentOnRooms).to.have.been.called.with("Leatha Ullrich", "2309.20")
   });
 });
