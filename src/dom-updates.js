@@ -50,7 +50,6 @@ showPecentageOfRoomsOccupied(totalPercentage) {
 
 showPastBookings(pastBookings) {
   $(".filter-container").addClass("hidden")
-  console.log(pastBookings);
   $("main").html("");
   $("main").prepend(`<section class="bookings-container"> </section>`)
   pastBookings.forEach(booking => {
@@ -108,9 +107,42 @@ showFutureBookings(futureBookings) {
   }
 },
 
+showBookingsForCustomerWhenManager(loggedInCustomer) {
+
+  if(loggedInCustomer.length === 0) {
+    $(".filter-container").addClass("hidden")
+    $("main").html("");
+    $("main").prepend(`<section class="booking-cards">
+      <p class="no-rooms-found">You Have No Rooms Booked</p>
+    </section>`)
+  } else {
+    $("main").html("");
+    $("main").prepend(`<section class="bookings-container"> </section>`)
+    loggedInCustomer.forEach(booking => {
+      let deleteBtn = null;
+      if(moment(booking.date, "YYYY/MM/DD").fromNow().includes('ago')) {
+        deleteBtn = "";
+      } else {
+        deleteBtn = `<button class="delete-btn" id="${booking.id}">Delete Button</button>
+        </section>`
+
+      }
+      $(".bookings-container").prepend(`
+        <section class="booking-cards">
+        <h2>${booking.bookedRoom.roomType}</h2>
+        <h3>Booking Date: ${booking.date}</h3>
+        <h4>Room Number: ${booking.roomNumber}</h4>
+        ${deleteBtn}`
+        )
+    });
+  }
+
+},
+
+
+
 showAmountSpentOnRooms(name, totalAmount) {
   $("main").html("")
-  console.log(totalAmount);
   $("main").prepend(`<section class="booking-cards">
     <p class="no-rooms-found"> Welcome ${name}</p>
     <p class="no-rooms-found"> So Far You Spent: $${totalAmount} on bookings</p>
@@ -133,37 +165,63 @@ showRoomBooking() {
 
 showAvailableRooms(availableRooms) {
 
-  console.log(availableRooms);
   $("main").html("");
   $(".filter-container").removeClass("hidden")
-  $('main').prepend(`<section class="room-card-container">
-  </section>`);
+  $('main').prepend(`<section class="room-card-container">`);
 
   availableRooms.forEach(room => {
+    let bidet = null;
     if(room.bidet === true) {
-      $(".room-card-container").prepend(`<section class="room-card">
-      <h2>Room Type: <span class="room-type">${room.roomType}</span></h2>
-      <h3 class="included-amenities">Amenities:</h3>
-      <p class="amenity">Bidet: Yes</p>
-      <p class="amenity">Bed Size: ${room.bedSize}</p>
-      <p class="amenity">Number of Beds: ${room.numBeds}</p>
-      <p class="room-cost">Cost Per Night: $${room.costPerNight}</p>
-      <button class="book-room" type="button"  id=${room.number}>Book This Room</button>
-      </section>`)
-    } else {
-      $(".room-card-container").prepend(`<section class="room-card">
-      <h2>Room Type: <span class="room-type">${room.roomType}</span></h2>
-      <h3 class="included-amenities">Amenities:</h3>
-      <p class="amenity">Bidet: No</p>
-      <p class="amenity">Bed Size: ${room.bedSize}</p>
-      <p class="amenity">Number of Beds: ${room.numBeds}</p>
-      <p class="room-cost">Cost Per Night: $${room.costPerNight}</p>
-      <button class="book-room" type="button"  id=${room.number}>Book This Room</button>
-      </section>`)
+       bidet = `yes`
+    } else{
+      bidet = `no`
     }
-
+      $(".room-card-container").prepend(`<section class="room-card">
+      <h2>Room Type: <span class="room-type">${room.roomType}</span></h2>
+      <h3 class="included-amenities">Amenities:</h3>
+      <p class="amenity">Bidet: ${bidet}</p>
+      <p class="amenity">Bed Size: ${room.bedSize}</p>
+      <p class="amenity">Number of Beds: ${room.numBeds}</p>
+      <p class="room-cost">Cost Per Night: $${room.costPerNight}</p>
+      <button class="book-room" type="button"  id=${room.number}>Book This Room</button>
+      </section>`)
   })
+},
+
+showCustomerSearch(allCustomers) {
+  let customerNames = allCustomers.map(customer => {
+    return `<option value="${customer.id}">${customer.name}</option>`
+  })
+  $(".nav-btns-container").prepend(`
+
+    <section class="customer-search">
+
+    <section class="search-container">
+      <button id="dash-btn" type="button">Dash Board</button>
+      <label for="filter by type">Search Customers:</label>
+      <select id="selected-customer">
+        ${customerNames}
+      </select>
+      <button id="search-customer" type="button">Search</button>
+
+
+    </section>
+    `)
+
+},
+
+showGivenCustomerBookingInfo(loggedInCustomer) {
+  $("main").html("");
+  $("main").prepend(`<section class="customer-details-containter">
+    <h2>${loggedInCustomer.name}</h2>
+    <h3>Total Spent on Bookings:${loggedInCustomer.totalAmountSpent}</h3>
+    <button id="search-selected-customer-bookings" type="button">Search ${loggedInCustomer.name.split(" ")[0]}'s Bookigns</button>
+    </section>
+    `)
 }
+
+
+
 
 
 }; //domUpdates Closes Here
