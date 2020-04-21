@@ -1,4 +1,3 @@
-// An example of how you import jQuery into a JS file if you use jQuery in that file
 import $ from 'jquery';
 import domUpdates from './dom-updates.js'
 import ApiController from './api-controller';
@@ -8,14 +7,13 @@ import Booking from './Booking'
 import Manager from './Manager'
 import User from './User'
 import Customer from './Customer'
-// An example of how you tell webpack to use a CSS (SCSS) file
 import './css/base.scss';
-import './images/turing-logo.png'
+
 
 const api = new ApiController();
 const moment = require("moment");
 let loggedInCustomer;
-let manager;
+let manager = null;
 let customerRepo;
 
 const generateUserId = () => {
@@ -29,7 +27,6 @@ const generateUserId = () => {
     }
 }
 
-// will go inside a user class
 function processLogIn(data) {
   if($('#password-input').val() === 'overlook2019' && $('#username-input').val().includes('customer') && $('#username-input').val().length > 8)  {
       event.preventDefault();
@@ -39,10 +36,9 @@ function processLogIn(data) {
 
   } else if ($('#password-input').val() === 'overlook2019' && $('#username-input').val().includes('manager')) {
     event.preventDefault();
-      fetchData(createManager);
+      fetchData(createManager)
       domUpdates.hideLoginWindow();
       domUpdates.addManagerNavBar();
-
   } else {
     window.alert("Wrong Password or User Name");
   }
@@ -59,7 +55,7 @@ const fetchData = (entity, customerID) => {
     let allBookings = fetchedData[1].bookings;
     let allUsers = fetchedData[2].users;
     entity(allRooms, allBookings, allUsers, customerID)
-  })//.catch(error => console.log(error.message));
+  }).catch(error => console.log(error.message));
 }
 
 
@@ -67,12 +63,14 @@ const fetchData = (entity, customerID) => {
 const createManager = (allRooms, allBookings, allUsers) => {
   let allRoomsArray = allRooms.map(room => new Room(room));
   let allBookingsArray = allBookings.map(booking => new Booking(booking));
-  manager = new Manager(allBookingsArray, allRoomsArray);
+  let allUsersArray = allUsers.map(user => new User(user));
+
+  customerRepo = new CustomerRepo(allUsersArray, allBookingsArray, allRoomsArray);
+  manager = new Manager(customerRepo.customers, allBookingsArray, allRoomsArray);
 
   manager.calculateTotalRevenueForToday();
   manager.findPercentageOfRoomsOccupiedForToday();
-
-    console.log(manager);
+  domUpdates.showCustomerSearch(manager.customers)
 };
 
 
@@ -83,7 +81,6 @@ const createClinet = (allRooms, allBookings, allUsers, customerID) => {
   customerRepo = new CustomerRepo(allUsersArray, allBookingsArray, allRoomsArray)
   loggedInCustomer = new Customer(customerRepo.getCustomerById(customerID))
   loggedInCustomer.calculateTotalAmountSpent();
-  console.log(loggedInCustomer);
 };
 
 const eventHandler = (event) => {
@@ -96,25 +93,42 @@ const eventHandler = (event) => {
   } else if (event.target.id === "future-bookings") {
     loggedInCustomer.findFutureBookings();
   } else if(event.target.id === "check-rooms") {
-    console.log($("#input-date").val().split("-").join("/"));
     customerRepo.getRoomsAvailableForGivenDate($("#input-date").val().split("-").join("/"))
   } else if(event.target.id === "filter-btn") {
     searchByRoomType()
   } else if(event.target.classList.contains("book-room")) {
     loggedInCustomer.submitABooking(loggedInCustomer.id, customerRepo.choosenDate, event.target.id)
     .then(() => fetchData(createClinet, loggedInCustomer.id))
-    .then(() => window.alert("Booking Successful"))
-    // fetchData(createClinet, loggedInCustomer.id);
+    .then(() => window.alert("Booking Successful 👍"))
     $(".filter-container").addClass("hidden");
+  } else if (event.target.id === "search-customer") {
+      let targetCustomerID = Number($("#selected-customer").val());
+      let targerCustomerObj = manager.getCustomerById(targetCustomerID);
+      loggedInCustomer = new Customer(targerCustomerObj)
+      domUpdates.showGivenCustomerBookingInfo(loggedInCustomer)
+  } else if(event.target.id === "search-selected-customer-bookings") {
+      domUpdates.showBookingsForCustomerWhenManager(loggedInCustomer.bookings)
+  } else if(event.target.id === "dash-btn") {
+    $("main").html("");
+    $(".nav-btns-container").html("");
+
+    fetchData(createManager);
+  } else if(event.target.classList.contains("delete-btn")) {
+    api.deleteBooking(event.target.id).then(()=> window.alert("Booking Deleted. GREAT SUCCESS 👌"))
+    .then(()=> event.target.closest(".booking-cards").remove())
   }
 }
 
+
+
+
+
+
+
+
 const searchByRoomType = () => {
   let selectedRoomType = $("#tags").val()
-  console.log(selectedRoomType);
   customerRepo.filterRoomsByType(selectedRoomType)
-  // let matchedRecipes = user.filterMyRecipesByTag(allRecipes, selectedTag);
-  // displayRecipes(matchedRecipes)
 }
 
 
