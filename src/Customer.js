@@ -42,7 +42,6 @@ class Customer {
 
   }
 
-//NEEDS  TESTING
 submitABooking(id, date, roomNumber) {
 
   return this.apiController.bookARoom(id, date, roomNumber)
