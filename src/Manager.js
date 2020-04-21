@@ -10,29 +10,6 @@ class Manager extends CustomerRepo{
     this.selectedCustomer = null;
   }
 
-  // getAvailableRoomsForToday() {
-  //
-  //
-  // }
-
-
-// addRoomsToBookings(allRooms) {
-//   this.bookings.forEach(booking => {
-//     let matchedRoom = allRooms.find(room => {
-//       return room.number === booking.roomNumber
-//     })
-//     booking.bookedRoom = matchedRoom;
-//   })
-// }
-//
-// addBookingsToCustomers() {
-//   this.customers.forEach(customer => {
-//     customer.bookings = this.bookings.filter(booking => {
-//         return booking.userID === customer.id
-//       })
-//   })
-// }
-
 
 getTotalRoomsAvailableToday() {
   let totalRooms = 25;
@@ -69,7 +46,7 @@ findTodaysBookings() {
 
 findPercentageOfRoomsOccupiedForToday() {
   let totalPercentage = 100 - ((this.getTotalRoomsAvailableToday() / 25) * 100)
-  domUpdates.showPecentageOfRoomsOccupied(totalPercentage);
+  domUpdates.showPecentageOfRoomsOccupied(Math.round(totalPercentage));
   return totalPercentage;
 }
 
