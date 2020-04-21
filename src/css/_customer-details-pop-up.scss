@@ -1,0 +1,8 @@
+.customer-details-containter {
+  @extend .booking-cards;
+
+  h3 {
+    @include buttonsOrHeadings;
+    color: black;
+  }
+}
