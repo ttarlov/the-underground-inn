@@ -1,7 +1,7 @@
 .filter-container {
   @include borderStyle;
   width: 30%;
-  height: 100px;
+  height: 195px;
   margin: 10px;
   background-color: rgba(255, 255, 255, 0.7);
   @include column-center-flex;
@@ -9,9 +9,26 @@
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 20px;
-  button {
-    width: 15%;
+
+  label {
+    font-size: 1.5em;
+  }
+
+  select {
+    @include borderStyle;
     height: 30px;
+    width: 33%;
+    font-size: 1em;
+  }
+
+
+  button {
+    width: 34%;
+    font-size: 1.5em;
+    height: 39px;
+    @include borderStyle;
+    @include buttonsOrHeadings;
+    color: black;
   }
 
 
