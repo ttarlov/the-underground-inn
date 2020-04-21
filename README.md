@@ -1,105 +1,90 @@
-# Webpack Starter Kit
+# The Underground Inn- Where your SteamPunk 90s style video game hotel dream come true.....
 
-## Clone This Repo
+This project was the final solo project for Module 2 at Turing School of Software And Design. The goal of the project was to use everything we have learned over the last two modules including fetch API, jQuery, responsive design, SCSS, Chia/Mocha for testing and implementation of NPM packages.  
 
-That's right, _clone_ not fork. You will use this repo multiple times, but you can only fork a repository once. So here is what you need to do to clone the repo and still be able to push changes to your repo:
 
-1. Clone down this repo. Since you don't want to name your project "webpack-starter-kit", you can use an optional argument when you run `git clone` (you replace the `[...]` with the terminal command arguments): `git clone [remote-address] [what you want to name the repo]`
-1. Remove the default remote: `git remote rm origin` (notice that `git remote -v` not gives you back nothing)
-1. Create a new repo on GitHub with the name of `[what you want to name the repo]` to be consistent with naming
-1. Copy the address that you would use to clone down this repo - something like `git@github.com:...`
-1. Add this remote to your cloned down repo: `git remote add origin [address you copied in the previous step]` - do not include the brackets
+I am a child of the 80s and video game player of the 90s. I knew right away I wanted the app to have a 90s video game feel, like a hotel from a Blade Runner or UI from DOOM II. The app might not have the best accessibility (90%+) but I had to sacrifice that for the "timeless" 90s video game design.  
 
-Now try to commit something and push it up to your new repo. If everything is setup correctly, you should see the changes on GitHub.
 
-## Setup
+## Installing / Getting started
 
-After one person has gone through the steps of cloning down this repo and editing the remote, everyone should clone down the repo. 
+Clone down the repo. Use terminal commands to navigate to the root folder of the repo locally.
 
-Then install the library dependencies. Run:
+1. npm install
+2. cd into src folder
+3. open index.html
 
-```bash
-npm install
-```
+## Steps to use the App
 
-To verify that it is setup correctly, run `npm start` in your terminal. Go to `http://localhost:8080/` and you should see a page with some `h1` text and a pink background. If that's the case, you're good to go. Enter `control + c` in your terminal to stop the server at any time.
+### There are two paths you can take: 
+ 
+ **Manager** 
+  
+ 1. You can log in as a manager. Use username **manager** and password **overlook2019**.
+ 
+ 2. As a manager first screen you will see is your dashboard which tells you stats for todays bookings including percent 
+ of rooms booked, availability for today and also revenue for today in USD. 
+ 
+ 3. You are able to search customers and see their bookings. You are also able to delete bookings for a chosen customer and 
+ also place new bookings for a chosen customer. 
+ 
+ 4. At anytime you are able to go back to the dashboard by clicking **Dash** button. 
 
-## Where to Add Your Code
+  **Customer**
 
-### JavaScript
+  1. You can log in as a customer. Use  **customerXX** for username where XX is a number between 1-50 for a user id and **overlook2019** for password. 
+  
+  2. When you login you will be presented with a welcome screen that will show you your current spend on all your bookings. 
+  3. You are able to see your past, current and future bookings. 
+  4. You can also book a room for a specific data and only rooms that are available for that day. 
+  5. You can filter rooms based on their type (suite, junior suite, etc)
+ 
 
-You have to be very intentional with where you add your feature code. This repo uses a tool called [webpack](https://webpack.js.org/) to combine many JavaScript files into one big file. Webpack enables you to have many, separate JavaScript files to keep your code organized and readable. Webpack expects all of your code files to be in a specific place, or else it doesn't know how to combine them all behind the scenes.
+**Manager**
+![](screen-shots/log-in-screen.png)
+![](screen-shots/manager-dash-board.png)
+![](screen-shots/manager-interaction.gif)
 
-**Create all of your feature code files in the `src` directory.**
+**Customer**
+![](screen-shots/customer-welcome-screen.png)
+![](screen-shots/book-a-room-screen.png)
+![](screen-shots/room-selector-customer.png)
+![](screen_shots/customer-interaction.gif)
 
-Since code is separated into multiple files, you need to use the `import` and `export` syntax to share code across file.
 
-Here is a video that walks through some information about [import and export](https://www.youtube.com/watch?v=_3oSWwapPKQ). There are a lot of resources out there about `import` and `export`, and resources will sometimes call them `ES6 modules`. It's something you will see in React and beyond.
+### Live site link
+[Github Pages](https://ttarlov.github.io/)
 
-### HTML
 
-Add the HTML you need in the `index.html` file in the `./src` directory. There is some boilerplate HTML that exists from the start that you can modify.
 
-### CSS (SCSS/SASS)
+### Technologies Used
 
-This project is setup to use SCSS/SASS files by default instead of your regular CSS files. Add your SCSS files in the `src/css` directory. There is a `base.scss` file already there, but you can change this file and add multiple SCSS files in this directory.
+* HTML
+* SCSS
+* Mocha/Chai (testing)
+* Jquery
+* Moment.js
+* WebPack
+* Fetch API
 
-This might sound weird, but you need to `import` your SCSS files in the JavaScript entry file (`index.js`) for the styles to be applied to your HTML. The example `base.scss` file has already been imported in the JavaScript entry file as an example.
 
-### Images
+## Learning Goals
 
-Add your image files in the `src/images` directory. Similar to CSS files, you need to `import` image files in the JavaScript entry file (`index.js`). Then go into the HTML and add an `img` element with the `src` attribute pointing to the `images` directory. There is an example in the `index.html` file for you to see.
+## Solidify and demonstrate understanding of the following:
+* Testing Class Properties and Methods with Mocha/Chai
+* Test DOM manipulation with Chai Spies as needed
+* Implement TDD 
+* Data Restructuring
+* Use Jquery for all DOM manipulation
+* Use SCSS mixins, nesting and variable and also use partial files
 
-## How to View Your Code in Action
 
-In the terminal, run:
 
-```bash
-npm start
-```
+## Challenges
 
-You will see a bunch of lines output to your terminal. One of those lines will be something like:
+So far this was the biggest project of my time at Turing. I only had 6 days to do this project from start to finish. The hardest part was using OOP properly and restructuring data. Using Spies for testing was also an uphill battle. 
 
-```bash
-Project is running at http://localhost:8080/
-```
+## Wins
 
-Go to `http://localhost:8080/` in your browser to view your code running in the browser.
-
----
-
-## Test Files Organization
-
-Similar to feature code, your test code needs to be put in a specific place for it to run successfully.
-
-**Put all of your test files in the `test` directory.** As a convention, all test filenames should end with `-test.js`. For instance: `box-test.js`.
-
-## Running Your Tests
-
-Run your test suite using the command:
-
-```bash
-npm test
-```
-
-The test results will output to the terminal.
-
----
-
-## Linting Your Code
-
-Run the command in your terminal `npm run lint` to run the linter on your JavaScript code. There will be errors and warnings right from the start in this starter kit - the linter is still running successfully.
-
-Your linter will look at the JavaScript files you have within the `src` directory and the `test` directory. 
-
-## Webpack?
-
-If you look in the `package.json` file, you'll see one of the library dependencies called `webpack`. If you're interested in learning more about what Webpack is and how it works behind the scenes, take a look through the [Webpack configuration documentation](https://webpack.js.org/concepts/).
-
-## Deploying to GitHub Pages
-
-_If you are finished with the functionality and testing of your project_, then you can consider deploying your project to the web! This way anyone can play it without cloning down your repo.
-
-[GitHub Pages](https://pages.github.com/) is a great way to deploy your project to the web. Don't worry about this until your project is free of bugs and well tested!
-
-If you _are_ done, you can follow [this procedure](./gh-pages-procedure.md) to get your project live on GitHub Pages.
+This biggest win for this project was doing 90%+ of all DOM manipulation from class methods and being able to spy
+test them all. I also got a much deeper understanding of the TDD process. 
