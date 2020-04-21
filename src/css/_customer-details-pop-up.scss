@@ -1,8 +1,22 @@
 .customer-details-containter {
   @extend .booking-cards;
+  padding: 50px;
+
+  h2 {
+    margin-bottom: 20px;
+  }
+
 
   h3 {
     @include buttonsOrHeadings;
     color: black;
+    margin-bottom: 20px
   }
+
+  button {
+    margin-bottom: 10px;
+    width: 65%;
+    font-size: 1.7vw
+  }
+
 }
