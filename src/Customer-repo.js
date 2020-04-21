@@ -17,11 +17,6 @@ class CustomerRepo {
 
   }
 
-  // instantiateCustomers(allCustomers) {
-  //   return allCustomers.map(customer => {
-  //   return  new Customer(customer);
-  //   });
-  // }
 
   addRoomsToBookings(allRooms) {
     this.bookings.forEach(booking => {
@@ -58,8 +53,6 @@ class CustomerRepo {
 
      return availableRooms
    },[]);
-    // console.log("bookedRooms", bookedRooms);
-    // console.log("BOOKABLE ROOMS", bookableRooms);
     this.bookableRooms = bookableRooms;
     domUpdates.showAvailableRooms(bookableRooms)
   return bookableRooms
@@ -70,7 +63,6 @@ class CustomerRepo {
         domUpdates.showAvailableRooms(this.bookableRooms)
         return this.bookableRooms
       }
-    // console.log(this.bookableRooms);
   let matchedRooms = this.bookableRooms.filter(room => {
     return  room.roomType === selectedRoomType
     })
