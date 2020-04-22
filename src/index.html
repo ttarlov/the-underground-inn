@@ -2,6 +2,7 @@
 <html lang="en-US" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The UnderGround INN</title>
     <link href="https://fonts.googleapis.com/css?family=Righteous&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Vibur">
@@ -28,8 +29,10 @@
   <div class="login-page">
   <div class="form">
     <form class="login-form">
-      <input id="username-input" type="text" placeholder="username" value="customer"/>
-      <input id="password-input" type="text" placeholder="password" value="overlook2019"/>
+      <label for="username-input">Enter User Name</label>
+      <input  id="username-input" type="text" placeholder="username"/>
+      <label for="password-input">Enter Password</label>
+      <input for="password-input" id="password-input" type="text" placeholder="password"/>
       <button id="log-in-btn">login</button>
     </form>
   </div>

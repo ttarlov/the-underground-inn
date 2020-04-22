@@ -1,28 +1,15 @@
 const moment = require("moment");
 import domUpdates from './dom-updates';
+import CustomerRepo from './Customer-repo'
 
-class Manager {
-  constructor(allBookings, allRooms) {
+class Manager extends CustomerRepo{
+  constructor(allCustomers, allBookings, allRooms) {
+    super(allCustomers, allBookings, allRooms)
     this.today = moment().format("YYYY/MM/DD");
-    this.bookings = allBookings;
-    this.addRoomsToBookings(allRooms)
     this.todaysBookings = this.findTodaysBookings()
+    this.selectedCustomer = null;
   }
 
-  getAvailableRoomsForToday() {
-
-
-  }
-
-
-addRoomsToBookings(allRooms) {
-  this.bookings.forEach(booking => {
-    let matchedRoom = allRooms.find(room => {
-      return room.number === booking.roomNumber
-    })
-    booking.bookedRoom = matchedRoom;
-  })
-}
 
 getTotalRoomsAvailableToday() {
   let totalRooms = 25;
@@ -59,9 +46,13 @@ findTodaysBookings() {
 
 findPercentageOfRoomsOccupiedForToday() {
   let totalPercentage = 100 - ((this.getTotalRoomsAvailableToday() / 25) * 100)
-  domUpdates.showPecentageOfRoomsOccupied(totalPercentage);
+  domUpdates.showPecentageOfRoomsOccupied(Math.round(totalPercentage));
   return totalPercentage;
 }
+
+
+
+
 
 
 }

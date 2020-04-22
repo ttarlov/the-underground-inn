@@ -7,6 +7,7 @@ chai.use(spies);
 import Customer from '../src/Customer';
 import User from '../src/User';
 import CustomerRepo from '../src/Customer-repo'
+import ApiController from '../src/api-controller'
 import domUpdates from "../src/dom-updates.js";
 
 describe('Customer Class', function(){
@@ -202,6 +203,11 @@ describe('Customer Class', function(){
   }
 ])
   });
+
+  it('should initialize with ApiController in constructor', function(){
+      expect(customer.apiController).to.be.an.instanceof(ApiController)
+  });
+
 
 describe('findPastBookings Method', function(){
 
@@ -419,10 +425,11 @@ describe('findFutureBookings Method', function(){
 describe('calculateTotalAmountSpent Method', function(){
   it('should be able to calculate total amount spent on rooms', function(){
     expect(customer.calculateTotalAmountSpent()).to.eq("2309.20")
-    expect(domUpdates.showAmountSpentOnRooms).to.have.been.called(1)
+    expect(domUpdates.showAmountSpentOnRooms).to.have.been.called(2)
     expect(domUpdates.showAmountSpentOnRooms).to.have.been.called.with("Leatha Ullrich", "2309.20")
   });
 });
+
 
 
 }); //main describe block ends here

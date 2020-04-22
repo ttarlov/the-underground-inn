@@ -13,21 +13,25 @@
   @include column-center-flex;
   justify-content: space-around;
   width: 50%;
-  height: 250px;
+  height: auto;
   margin: 20px;
+  padding: 20px;
   background-color: rgba(255, 255, 255, 0.7);
 
   h2 {
     font-size: 2em;
     text-transform: capitalize;
+    margin: 10px;
   }
 
   h3 {
     font-size: 2em;
+    margin: 10px;
   }
 
   h4 {
     font-size: 2em;
+    margin: 10px;
   }
 
   h5 {
@@ -59,6 +63,7 @@
     @include buttonsOrHeadings;
     font-family: "Righteous";
     color: black;
+    margin: 25px;
 }
 
 }

@@ -27,7 +27,6 @@ bookARoom(id, date, roomNumber) {
       "date": date,
       "roomNumber": Number(roomNumber)
     }
-    console.log(bookingRequestObj);
   let url = `${this.rootUrl}/bookings/bookings`;
   return fetch(url, {
   method: 'POST',
@@ -38,6 +37,23 @@ bookARoom(id, date, roomNumber) {
   })
   .then(response => console.log(response.json()))
   .catch(error => console.log(error.message));
+}
+
+deleteBooking(id) {
+  let deleteBookingObj = {
+    id: Number(id)
+  }
+  let url = `${this.rootUrl}/bookings/bookings`;
+  return fetch(url, {
+  method: 'DELETE',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(deleteBookingObj)
+  })
+  .then(response => console.log(response.json()))
+  .catch(error => console.log(error.message));
+
 }
 
 

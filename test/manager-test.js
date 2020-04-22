@@ -8,7 +8,8 @@ import domUpdates from "../src/dom-updates.js";
 
 import Manager from '../src/Manager';
 import Room from '../src/Room';
-import Booking from '../src/Booking'
+import Booking from '../src/Booking';
+import User from '../src/User'
 
 describe('Manager Class', function(){
   let manager;
@@ -17,6 +18,8 @@ describe('Manager Class', function(){
   let today;
   let roomsArry;
   let bookingsArry;
+  let allUsers;
+  let usersArray
 
   afterEach(() => {
     chai.spy.restore(domUpdates);
@@ -29,6 +32,22 @@ beforeEach(function(){
   chai.spy.on(domUpdates, "showPecentageOfRoomsOccupied", () => {});
 
   today = moment().format("YYYY/MM/DD");
+
+  allUsers = [
+    {
+    "id": 1,
+    "name": "Leatha Ullrich"
+    },
+    {
+    "id": 2,
+    "name": "Rocio Schuster"
+    },
+    {
+    "id": 3,
+    "name": "Kelvin Schiller"
+    },
+  ];
+
 
   rooms = [
     {
@@ -83,8 +102,9 @@ beforeEach(function(){
 
   roomsArry = rooms.map(room => new Room(room))
   bookingsArry = bookings.map(booking => new Booking(booking))
+  usersArray = allUsers.map(user => new User(user))
 
-  manager = new Manager(bookingsArry, roomsArry)
+  manager = new Manager(usersArray, bookingsArry, roomsArry)
 });
 
 
@@ -171,7 +191,7 @@ describe('addRoomsToBookings Method', function(){
     it('should be able to calculate total revenue for today', function(){
       expect(manager.calculateTotalRevenueForToday()).to.eq(968.52)
       expect(domUpdates.showTotalRevenueForToday).to.have.been.called(1)
-      expect(domUpdates.showTotalRevenueForToday).to.have.been.called.with(968.52)
+      expect(domUpdates.showTotalRevenueForToday).to.have.been.called.with("968.52")
     });
 
     describe('findTodaysBookings Method', function(){
@@ -214,7 +234,7 @@ describe('addRoomsToBookings Method', function(){
 
   describe('findPercentageOfRoomsOccupiedForToday Method', function(){
 
-    it ('should calculate percentage of rooms occuped for today', function(){
+    it('should calculate percentage of rooms occuped for today', function(){
       expect(manager.findPercentageOfRoomsOccupiedForToday()).to.eq(8)
       expect(domUpdates.showPecentageOfRoomsOccupied).to.have.been.called(1)
       expect(domUpdates.showPecentageOfRoomsOccupied).to.have.been.called.with(8)
