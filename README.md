@@ -53,7 +53,7 @@ Clone down the repo. Use terminal commands to navigate to the root folder of the
 
 
 ### Live site link
-[Github Pages](https://ttarlov.github.io/)
+[Github Pages](https://ttarlov.github.io/the-underground-inn/)
 
 
 
