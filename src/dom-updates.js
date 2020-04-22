@@ -216,6 +216,7 @@ showGivenCustomerBookingInfo(loggedInCustomer) {
     <h2>${loggedInCustomer.name}</h2>
     <h3>Total Spent on Bookings:${loggedInCustomer.totalAmountSpent}</h3>
     <button id="search-selected-customer-bookings" type="button">Search ${loggedInCustomer.name.split(" ")[0]}'s Bookigns</button>
+    <button id="book-a-room-for-customer" type="button">Book a Room for ${loggedInCustomer.name.split(" ")[0]}</button>
     </section>
     `)
 }
