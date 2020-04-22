@@ -49,7 +49,7 @@ Clone down the repo. Use terminal commands to navigate to the root folder of the
 ![](src/screen-shots/customer-welcome-screen.png)
 ![](src/screen-shots/book-a-room-screen.png)
 ![](src/screen-shots/room-selector-customer.png)
-![](src/screen_shots/customer-interaction.gif)
+![](src/screen-shots/customer-interaction.gif)
 
 
 ### Live site link
