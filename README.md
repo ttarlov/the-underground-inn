@@ -43,7 +43,7 @@ Clone down the repo. Use terminal commands to navigate to the root folder of the
 **Manager**
 ![](src/screen-shots/log-in-screen.png)
 ![](src/screen-shots/manager-dash-board.png)
-![](screen-shots/manager-interaction.gif)
+![](src/screen-shots/manager-interaction.gif)
 
 **Customer**
 ![](src/screen-shots/customer-welcome-screen.png)
