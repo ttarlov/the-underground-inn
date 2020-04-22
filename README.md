@@ -41,15 +41,15 @@ Clone down the repo. Use terminal commands to navigate to the root folder of the
  
 
 **Manager**
-![](screen-shots/log-in-screen.png)
-![](screen-shots/manager-dash-board.png)
+![](src/screen-shots/log-in-screen.png)
+![](src/screen-shots/manager-dash-board.png)
 ![](screen-shots/manager-interaction.gif)
 
 **Customer**
-![](screen-shots/customer-welcome-screen.png)
-![](screen-shots/book-a-room-screen.png)
-![](screen-shots/room-selector-customer.png)
-![](screen_shots/customer-interaction.gif)
+![](src/screen-shots/customer-welcome-screen.png)
+![](src/screen-shots/book-a-room-screen.png)
+![](src/screen-shots/room-selector-customer.png)
+![](src/screen_shots/customer-interaction.gif)
 
 
 ### Live site link
