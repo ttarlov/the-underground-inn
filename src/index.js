@@ -97,10 +97,8 @@ const eventHandler = (event) => {
   } else if(event.target.id === "filter-btn") {
     searchByRoomType()
   } else if(event.target.classList.contains("book-room")) {
-    loggedInCustomer.submitABooking(loggedInCustomer.id, customerRepo.choosenDate, event.target.id)
-    .then(() => fetchData(createClinet, loggedInCustomer.id))
-    .then(() => window.alert("Booking Successful 👍"))
-    $(".filter-container").addClass("hidden");
+      console.log(loggedInCustomer);
+      bookRoom()
   } else if (event.target.id === "search-customer") {
       let targetCustomerID = Number($("#selected-customer").val());
       let targerCustomerObj = manager.getCustomerById(targetCustomerID);
@@ -116,12 +114,27 @@ const eventHandler = (event) => {
   } else if(event.target.classList.contains("delete-btn")) {
     api.deleteBooking(event.target.id).then(()=> window.alert("Booking Deleted. GREAT SUCCESS 👌"))
     .then(()=> event.target.closest(".booking-cards").remove())
+  } else if(event.target.id === "book-a-room-for-customer") {
+      domUpdates.showRoomBooking();
   }
 }
 
 
-
-
+const bookRoom = () => {
+  if(manager) {
+    $("main").html("");
+    $(".nav-btns-container").html("");
+    loggedInCustomer.submitABooking(loggedInCustomer.id, customerRepo.choosenDate, event.target.id)
+    .then(() => window.alert("Booking Successful 👍"))
+    .then(() => fetchData(createManager))
+    $(".filter-container").addClass("hidden");
+  } else {
+    loggedInCustomer.submitABooking(loggedInCustomer.id, customerRepo.choosenDate, event.target.id)
+    .then(() => window.alert("Booking Successful 👍"))
+    .then(() => fetchData(createClinet, loggedInCustomer.id))
+    $(".filter-container").addClass("hidden");
+  }
+}
 
 
 
